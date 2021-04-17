@@ -12,5 +12,6 @@ package fr.insa.gonzalvo.projet;
 public class Treillis {
     public static void main(String[] args) {
         System.out.println("treillis");
+        System.out.println("treillis");
     }
 }
