@@ -10,5 +10,20 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Appui_Double extends Noeuds {
+    //constructeur avec position fixée
+    public Appui_Double (double px, double py) {
+        this.px=px;
+        this.py=py;
+    }
+
+    // on fixe la position en enlevant les set
+    @Override
+    public void setpx(double px) {
+        
+    }
+    @Override
+    public void setpy(double py) {
+        
+    }  
     
 }

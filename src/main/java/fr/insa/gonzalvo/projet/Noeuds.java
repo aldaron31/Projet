@@ -11,11 +11,11 @@ package fr.insa.gonzalvo.projet;
  */
 public abstract class Noeuds {
     //position du noeud
-    private double px;
-    private double py;
+    protected double px;
+    protected double py;
     //vecteur somme des forces
-    private double fx;
-    private double fy;
+    protected double fx;
+    protected double fy;
     
     //méthodes de base
     public void setpx(double px) {

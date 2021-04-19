@@ -10,7 +10,5 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Noeud_Simple extends Noeuds {
-    public Noeud_Simple(double px, double py) {
-        
-    }
+    
 }
