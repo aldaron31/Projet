@@ -11,4 +11,12 @@ package fr.insa.gonzalvo.projet;
  */
 public class Barre {
     private int id;
+    private Noeuds Na;
+    private Noeuds Nb;
+    private Type_Barre type;
+    
+    public double longueur() {
+    return Math.sqrt((Nb.getpx()-Na.getpx())*(Nb.getpx()-Na.getpx())+(Nb.getpy()-Na.getpy()*(Nb.getpy()-Na.getpy())));
+}
+    
 }

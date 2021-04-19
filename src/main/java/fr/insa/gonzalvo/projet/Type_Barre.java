@@ -9,6 +9,6 @@ package fr.insa.gonzalvo.projet;
  *
  * @author gonza
  */
-public class Typre_Barre {
+public class Type_Barre {
     
 }
