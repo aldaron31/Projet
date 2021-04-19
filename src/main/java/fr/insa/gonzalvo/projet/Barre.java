@@ -10,5 +10,5 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Barre {
-    
+    private int id;
 }

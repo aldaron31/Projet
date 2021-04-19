@@ -13,6 +13,8 @@ public abstract class Noeuds {
     //position du noeud
     protected double px;
     protected double py;
+    // identificateur
+    protected int id;
     //vecteur somme des forces
     protected double fx;
     protected double fy;
@@ -30,4 +32,8 @@ public abstract class Noeuds {
     public double getpy() {
         return py;
     }
+    public int getid() {
+        return this.id;
+    }
+    
 }
