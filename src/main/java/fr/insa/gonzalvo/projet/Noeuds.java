@@ -9,6 +9,25 @@ package fr.insa.gonzalvo.projet;
  *
  * @author gonza
  */
-public class Noeuds {
+public abstract class Noeuds {
+    //position du noeud
+    private double px;
+    private double py;
+    //vecteur somme des forces
+    private double fx;
+    private double fy;
     
+    //méthodes de base
+    public void setpx(double px) {
+        this.px=px;
+    }     
+    public double getpx() {
+        return px;
+    }
+    public void setpy(double py) {
+        this.py=py;
+    }     
+    public double getpy() {
+        return py;
+    }
 }

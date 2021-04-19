@@ -9,6 +9,6 @@ package fr.insa.gonzalvo.projet;
  *
  * @author gonza
  */
-public class Appui {
+public class Appui extends Noeuds {
     
 }
