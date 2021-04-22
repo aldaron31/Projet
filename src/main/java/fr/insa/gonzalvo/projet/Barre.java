@@ -15,8 +15,5 @@ public class Barre {
     private Noeuds Nb;
     private Type_Barre type;
     
-    public double longueur() {
-    return Math.sqrt((Nb.getpx()-Na.getpx())*(Nb.getpx()-Na.getpx())+(Nb.getpy()-Na.getpy()*(Nb.getpy()-Na.getpy())));
-}
     
 }

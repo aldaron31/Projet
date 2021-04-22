@@ -11,14 +11,5 @@ package fr.insa.gonzalvo.projet;
  */
 public class Appui_Double extends Noeuds {
 
-    // on fixe la position en enlevant les set
-    @Override
-    public void setpx(double px) {
-        
-    }
-    @Override
-    public void setpy(double py) {
-        
-    }  
-    
+       
 }

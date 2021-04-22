@@ -9,15 +9,6 @@ package fr.insa.gonzalvo.projet;
  *
  * @author gonza
  */
-public abstract class Noeuds {
-    //position du noeud
-    protected Point point;
-    // identificateur
-    protected int id;
-    //vecteur somme des forces
-    protected double fx;
-    protected double fy;
-    
-  
+public class Identificateur {
     
 }
