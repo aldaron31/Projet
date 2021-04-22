@@ -10,5 +10,7 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Triangle_Terrain {
-    
+   private Point p1;
+   private Point p2;
+   private Point p3;
 }

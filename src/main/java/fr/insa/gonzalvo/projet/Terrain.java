@@ -14,5 +14,5 @@ public class Terrain {
    private double xmax;
    private double ymin;
    private double ymax;
-
+   
 }
