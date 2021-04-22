@@ -25,7 +25,7 @@ public class Point {
      }
 
     public Point(double px, double py, Color c) {
-        super(c);
+        
         this.px = px;
         this.py = py;
     }
@@ -52,11 +52,6 @@ public class Point {
         return res;
     }
 
-    public String toString() {
-        return "{Point ; abs : " + this.px + " ; ord : " + this.py + "}" +
-                "couleur : " + this.getCouleurContenu();
-    }
-
     public static void testDistance() {
         Point p1, point2, pp, mi;
         p1 = new Point(0, 0);
@@ -69,7 +64,6 @@ public class Point {
         System.out.println("milieu : " + mi);
     }
 
-    @Override
     public double minX() {
         return this.px;
     }
