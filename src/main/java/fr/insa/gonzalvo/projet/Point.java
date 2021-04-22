@@ -37,6 +37,13 @@ public class Point {
     public void setPx(double px) {
         this.px = px;
     }
+    public double getPy() {
+        return this.py;
+    }
+
+    public void setPy(double py) {
+        this.py = py;
+    }
 
     public double distance(Point p2) {
         double dx = this.px - p2.px;

@@ -18,6 +18,4 @@ public abstract class Noeuds {
     protected double fx;
     protected double fy;
     
-  
-    
 }
