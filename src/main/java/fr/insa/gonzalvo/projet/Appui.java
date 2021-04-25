@@ -9,6 +9,9 @@ package fr.insa.gonzalvo.projet;
  *
  * @author gonza
  */
-public class Appui extends Noeuds {
-    
+public abstract class Appui {
+    protected int id;
+    protected Triangle_Terrain TT;
+    protected int numero_point;
+    protected double position_segement;
 }

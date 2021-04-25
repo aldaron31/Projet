@@ -10,5 +10,7 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Identificateur {
-    
+    int Tab_Noeuds[];
+    int Tab_Appui[];
+    int Tab_Barre[];
 }

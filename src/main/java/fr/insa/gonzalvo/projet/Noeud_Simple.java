@@ -10,5 +10,6 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Noeud_Simple extends Noeuds {
+    private Point point;
     
 }
