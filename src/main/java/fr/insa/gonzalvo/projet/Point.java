@@ -46,7 +46,7 @@ public class Point {
     }
     
     public String DefPoint(){
-        return "("+px+","+py+")";
+        return "("+this.px+","+this.py+")";
     }
 
     public double distance(Point p2) {
