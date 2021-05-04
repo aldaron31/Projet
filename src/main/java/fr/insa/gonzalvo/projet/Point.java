@@ -72,7 +72,7 @@ public class Point {
         double dist2 = pp.distance(p1);
         System.out.println("distance : " + dist);
         mi = p1.milieu(pp);
-        System.out.println("milieu : " + mi);
+        System.out.println("milieu : " + mi.DefPoint());
     }
 
     public double minX() {
@@ -92,6 +92,7 @@ public class Point {
     public static void main(String[] args) {
 //        testDistance();
 testConstructeur();
+testDistance();
     }
 
 }
