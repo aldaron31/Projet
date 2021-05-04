@@ -15,6 +15,7 @@ public class Point {
     
     private double px;
     private double py;
+    private Color c;
 
     public Point() {
         this(0.0, 0.0,Color.black);
@@ -25,7 +26,7 @@ public class Point {
      }
 
     public Point(double px, double py, Color c) {
-        
+        this.c=c;
         this.px = px;
         this.py = py;
     }
