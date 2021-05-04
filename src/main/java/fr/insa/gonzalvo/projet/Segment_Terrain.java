@@ -10,5 +10,11 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Segment_Terrain {
+    private Point debut;
+    private Point fin;
     
+    public Segment_Terrain(Point debut,Point fin){
+        this.debut=debut;
+        this.fin=fin;
+    }
 }
