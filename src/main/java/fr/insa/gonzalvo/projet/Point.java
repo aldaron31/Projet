@@ -44,6 +44,10 @@ public class Point {
     public void setPy(double py) {
         this.py = py;
     }
+    
+    public String DefPoint(){
+        return "("+px+","+py+")";
+    }
 
     public double distance(Point p2) {
         double dx = this.px - p2.px;
