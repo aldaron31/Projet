@@ -12,6 +12,8 @@ package fr.insa.gonzalvo.projet;
 public abstract class Noeuds {
     // identificateur
     protected int id;
+    //Abscisse et ordonée
+   private Point nxy;
     //vecteur somme des forces
     protected double fx;
     protected double fy;
