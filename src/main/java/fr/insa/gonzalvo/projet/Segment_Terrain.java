@@ -21,7 +21,7 @@ public class Segment_Terrain {
     }
     
     public Segment_Terrain(Point debut,Point fin){
-        this(debut,fin,Color.black);
+        this(debut,fin,Color.blue);
     }
     
     public Point getDebut(){
@@ -29,5 +29,8 @@ public class Segment_Terrain {
     }
     public Point getFin(){
         return fin;
+    }
+    public String DefSegment(){
+        return "("+this.debut.DefPoint()+","+this.fin.DefPoint()+")";
     }
 }
