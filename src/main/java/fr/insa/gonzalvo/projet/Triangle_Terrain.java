@@ -13,7 +13,6 @@ public class Triangle_Terrain {
    private Point p1;
    private Point p2;
    private Point p3;
-   private int idTri;
    
    //constructeur où on indique les 3 points
    public Triangle_Terrain(Point p1, Point p2, Point p3) {
