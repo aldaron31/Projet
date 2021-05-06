@@ -14,6 +14,7 @@ public class Barre {
     private Noeuds Na;
     private Noeuds Nb;
     private Type_Barre type;
+    private double traction;
     
     
 }
