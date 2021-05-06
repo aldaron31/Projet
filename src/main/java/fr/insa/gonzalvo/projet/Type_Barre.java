@@ -11,4 +11,15 @@ package fr.insa.gonzalvo.projet;
  */
 public class Type_Barre {
     
+    private Identificateur id;
+    private int cout;
+    private int lmin;
+    private int lmax;
+    private int rtmax;
+    private int rcmax;
+    private String nom;
+    
+    public Type_Barre(Identificateur id, int cout, int lmin, int lmax, int rtmax, int rcmax, String nom){
+        
+    }
 }

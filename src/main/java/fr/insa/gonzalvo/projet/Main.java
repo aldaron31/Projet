@@ -7,11 +7,8 @@ package fr.insa.gonzalvo.projet;
 
 /**
  *
- * @author gonza
+ * @author Elève
  */
-public class Treillis {
-    private Terrain terrain;
-    private int ensemblenoeuds[];
-    private int ensemblebarres[];
-    private Catalogue ensembletypebarre;
+public class Main {
+    
 }
