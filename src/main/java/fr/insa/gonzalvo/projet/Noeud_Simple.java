@@ -11,5 +11,7 @@ package fr.insa.gonzalvo.projet;
  */
 public class Noeud_Simple extends Noeuds {
     private Point point;
+    private int nbr_barre[];
+    
     
 }

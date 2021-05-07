@@ -427,5 +427,12 @@ public class Matrice {
         test3();
 
     }
+    
+    public Matrice Gauss(Matrice M){
+        Matrice id=new Matrice(this.nbrLig, this.nbrCol);
+        id=id.identite(this.nbrCol);
+        int i;
+        return id;
+    }
 
 }
