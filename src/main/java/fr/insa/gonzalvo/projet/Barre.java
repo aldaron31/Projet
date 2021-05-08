@@ -10,11 +10,16 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Barre {
+    private Treillis Treillis;
     private int id;
     private Noeuds Na;
     private Noeuds Nb;
     private Type_Barre type;
     private double traction;
+    
+    public Treillis getTreillisBarre(){
+        return this.Treillis;
+    }
     
     
 }

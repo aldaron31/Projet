@@ -12,8 +12,13 @@ package fr.insa.gonzalvo.projet;
 public abstract class Noeuds {
     // identificateur
     protected int id;
+    private Treillis Treillis;
     //vecteur somme des forces
     protected double fx;
     protected double fy;
+    
+    public Treillis getTreillisNoeuds(){
+        return this.Treillis;
+    }
     
 }
