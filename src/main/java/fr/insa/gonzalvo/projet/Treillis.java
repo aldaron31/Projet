@@ -68,11 +68,19 @@ public class Treillis {
         }
     }
 
-   public String MontrerListeNoeuds(){
+   public String MontrerListNoeuds(){
        String res = "Groupe {\n";
        for (int i = 0; i<this.EnsembleNoeuds.size();i++){
-           res= res + (this.EnsembleNoeuds.get(i).toString(),"  ")+"\n";
+           res= res + (this.EnsembleNoeuds.get(i).toString()+"  ")+"\n";
        }
-       return res;
+       return res+"}";
+   }
+   
+   public String MontrerListBarres(){
+       String res = "Goupe {\n";
+       for(int i = 0; i<this.EnsembleBarres.size();i++){
+           res = res + (this.EnsembleBarres.get(i).toString()+"  ")+"\n"; 
+       }
+       return res+"}";
    }
 }
