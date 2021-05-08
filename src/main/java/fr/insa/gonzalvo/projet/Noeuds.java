@@ -5,6 +5,8 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import java.util.List;
+
 /**
  *
  * @author gonza
@@ -17,11 +19,22 @@ public abstract class Noeuds {
     protected double fx;
     protected double fy;
     
+    /*
     public Treillis getTreillisNoeuds(){
         return this.TreillisNoeuds;
     }
     
     public void setTreillisNoeuds(Treillis Treillis){
     this.TreillisNoeuds=Treillis;
+    }
+*/
+    
+    public List<Noeuds> getListNoeuds(){
+        return this.TreillisNoeuds.getEnsembleNoeuds();
+        
+    }
+    
+    public void setListNoeuds(List<Noeuds> ListNoeuds){
+        this.TreillisNoeuds.setEnsembleNoeuds(ListNoeuds);
     }
 }

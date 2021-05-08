@@ -26,6 +26,25 @@ public class Treillis {
         this.EnsembleBarres=new ArrayList<Barre>();
         this.EnsembleNoeuds=new ArrayList<Noeuds>();
     }
+    //méthodes pour avoir les get et set seulement d'un des tableaux
+
+    public List<Barre> getEnsembleBarres() {
+        return EnsembleBarres;
+    }
+
+    public List<Noeuds> getEnsembleNoeuds() {
+        return EnsembleNoeuds;
+    }
+
+    public void setEnsembleBarres(List<Barre> EnsembleBarres) {
+        this.EnsembleBarres = EnsembleBarres;
+    }
+
+    public void setEnsembleNoeuds(List<Noeuds> EnsembleNoeuds) {
+        this.EnsembleNoeuds = EnsembleNoeuds;
+    }
+    
+    
     
     public void AddBarre(Barre B){
        if(B.getTreillisBarre() != this.EnsembleBarres){
