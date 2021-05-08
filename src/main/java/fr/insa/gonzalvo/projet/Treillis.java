@@ -47,13 +47,13 @@ public class Treillis {
     
     
     public void AddBarre(Barre B){
-       if(B.getTreillisBarre() != this.EnsembleBarres){
-           if(B.getTreillisBarre()!= null){
+       if(B.getListBarres() != this.EnsembleBarres){
+           if(B.getListBarres()!= null){
                throw new Error("Barre est dans un autre treillis");
            }
            else{
                this.EnsembleBarres.add(B);
-               B.setTreillisBarre(this.EnsembleBarres);
+               B.setListBarres(this.EnsembleBarres);
            }
        } 
     }
