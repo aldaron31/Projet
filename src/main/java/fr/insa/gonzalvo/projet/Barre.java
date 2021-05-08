@@ -10,7 +10,7 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Barre {
-    private Treillis Treillis;
+    private Treillis TreillisBarre;
     private int id;
     private Noeuds Na;
     private Noeuds Nb;
@@ -18,8 +18,10 @@ public class Barre {
     private double traction;
     
     public Treillis getTreillisBarre(){
-        return this.Treillis;
+        return this.TreillisBarre;
     }
     
-    
+    public void setTreillisBarre(Treillis Treillis){
+        this.TreillisBarre = Treillis ;
+    }
 }

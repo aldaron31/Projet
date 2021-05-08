@@ -28,6 +28,18 @@ public class Treillis {
     }
     
     public void AddBarre(Barre B){
+       if(B.getTreillisBarre() != this.EnsembleBarres){
+           if(B.getTreillisBarre()!= null){
+               throw new Error("Barre est dans un autre treillis");
+           }
+           else{
+               this.EnsembleBarres.add(B);
+               B.setTreillisBarre(this.EnsembleBarres);
+           }
+       } 
+    }
+    
+    public void AddNoeuds(Noeuds N){
         
     }
 }
