@@ -14,8 +14,8 @@ import java.util.List;
 public class Barre {
     private Treillis TreillisBarre;
     private int id;
-    private Noeuds Na;
-    private Noeuds Nb;
+    private Noeuds NDebut;
+    private Noeuds NFin;
     private Type_Barre type;
     private double traction;
     

@@ -11,14 +11,20 @@ import java.util.List;
  *
  * @author gonza
  */
-public abstract class Noeuds {
+public class Noeuds {
     // identificateur
-    protected int id;
+    protected int identificateur;
     private Treillis TreillisNoeuds;
     //vecteur somme des forces
     protected double fx;
     protected double fy;
     
+    
+    public Noeuds(int i,Treillis T){
+        this.identificateur=i;
+        this.TreillisNoeuds=T;
+        
+    }
     /*
     public Treillis getTreillisNoeuds(){
         return this.TreillisNoeuds;

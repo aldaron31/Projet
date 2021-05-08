@@ -83,4 +83,10 @@ public class Treillis {
        }
        return res+"}";
    }
+   
+   public static void test(){
+    Noeud_Simple p1= new Noeud_Simple(1,2);
+    Noeud_Simple p2= new Noeud_Simple(3,2);
+    Noeud_Simple p3= new Noeud_Simple(4,2);   
+   }
 }
