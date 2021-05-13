@@ -9,6 +9,29 @@ package fr.insa.gonzalvo.projet;
  *
  * @author Elève
  */
-public class Main {
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+/**
+ *
+ * @author francois
+ */
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage){
+        Scene sc = new Scene(new Label("coucou"));
+        stage.setScene(sc);
+        stage.show();
+    }
+            
     
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
+
