@@ -11,9 +11,9 @@ import java.util.List;
  *
  * @author gonza
  */
-public class Noeuds {
+public abstract class Noeuds {
     // identificateur
-    protected int identificateur;
+/*    protected int identificateur;
     private Treillis TreillisNoeuds;
     //vecteur somme des forces
     protected double fx;
@@ -25,7 +25,7 @@ public class Noeuds {
         this.TreillisNoeuds=T;
         
     }
-    /*
+    
     public Treillis getTreillisNoeuds(){
         return this.TreillisNoeuds;
     }
@@ -33,7 +33,6 @@ public class Noeuds {
     public void setTreillisNoeuds(Treillis Treillis){
     this.TreillisNoeuds=Treillis;
     }
-*/
     
     public List<Noeuds> getListNoeuds(){
         return this.TreillisNoeuds.getEnsembleNoeuds();
@@ -43,4 +42,5 @@ public class Noeuds {
     public void setListNoeuds(List<Noeuds> ListNoeuds){
         this.TreillisNoeuds.setEnsembleNoeuds(ListNoeuds);
     }
+*/
 }

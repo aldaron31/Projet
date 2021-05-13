@@ -58,7 +58,7 @@ public class Treillis {
        } 
     }
     
-    public void AddNoeuds(Noeuds N){
+/*    public void AddNoeuds(Noeuds N){
         if(N.getListNoeuds() != this.EnsembleNoeuds){
             throw new Error ("Noeud est dans un autre treillis");
         }
@@ -67,7 +67,7 @@ public class Treillis {
              N.setListNoeuds(this.EnsembleNoeuds);
         }
     }
-
+*/
    public String MontrerListNoeuds(){
        String res = "Groupe {\n";
        for (int i = 0; i<this.EnsembleNoeuds.size();i++){
