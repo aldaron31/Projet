@@ -58,7 +58,7 @@ public class Treillis {
        } 
     }
     
-/*    public void AddNoeuds(Noeuds N){
+    public void AddNoeuds(Noeud_Simple N){
         if(N.getListNoeuds() != this.EnsembleNoeuds){
             throw new Error ("Noeud est dans un autre treillis");
         }
@@ -67,7 +67,7 @@ public class Treillis {
              N.setListNoeuds(this.EnsembleNoeuds);
         }
     }
-*/
+
    public String MontrerListNoeuds(){
        String res = "Groupe {\n";
        for (int i = 0; i<this.EnsembleNoeuds.size();i++){
@@ -84,9 +84,12 @@ public class Treillis {
        return res+"}";
    }
    
-   public static void test(){
+   public static void TestPoint(){
     Noeud_Simple p1= new Noeud_Simple(1,2);
     Noeud_Simple p2= new Noeud_Simple(3,2);
     Noeud_Simple p3= new Noeud_Simple(4,2);   
+   }
+   public static void main(String[] args){
+       tste
    }
 }

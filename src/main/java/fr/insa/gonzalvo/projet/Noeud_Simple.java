@@ -23,5 +23,6 @@ public class Noeud_Simple extends Noeuds {
         this.Nx=x;
         this.Ny=y;
     }
+    public getListNoeuds
     
 }
