@@ -50,11 +50,8 @@ public abstract class Figure {
     }
 
     public abstract double maxX();
-
     public abstract double minX();
-
     public abstract double maxY();
-
     public abstract double minY();
 
     public abstract double distancePoint(Point p);
