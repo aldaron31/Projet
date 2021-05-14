@@ -6,7 +6,6 @@
 package fr.insa.gonzalvo.projet;
 
 import java.util.List;
-import Matrice;
 
 /**
  *
@@ -35,14 +34,5 @@ public class Barre {
     
     public void setListBarres(List<Barre> ListBarre){
         this.TreillisBarre.setEnsembleBarres(ListBarre);
-    }
-    
-    public Barre(Noeuds Na, Noeuds Nb) {
-        this.NDebut=Na;
-        this.NFin=Nb;
-        int i=100;
-        while (i<100 && Tab_Barre[i]!=0) {
-        
-    }
     }
 }

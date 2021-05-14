@@ -13,10 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.GraphicsContext;
 
-/**
- *
- * @author Elève
- */
+
 public class DessinTreillis extends Pane {
     
     private MainPane main;
