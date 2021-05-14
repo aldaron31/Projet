@@ -420,6 +420,9 @@ public class Matrice {
         System.out.println(m.add(m.mult(m)));
     }
 
+    public int permuteLigne(int li1, int li2) {
+        return li1;
+    }
 
     public static void main(String[] args) {
         test1();
