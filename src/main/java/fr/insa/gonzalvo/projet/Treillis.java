@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author gonza
  */
-public class Treillis {
+public class Treillis extends Composants {
     
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
@@ -47,25 +47,27 @@ public class Treillis {
     //hasta aquí todo bien
     
     public void AddBarre(Barre B){
-       if(B.getListBarres() != this.EnsembleBarres){
-           if(B.getListBarres()!= null){
+       if(B.getTreillis() != this){
+           if(B.getTreillis()!= null){
                throw new Error("Barre est dans un autre treillis");
            }
            else{
                this.EnsembleBarres.add(B);
-               B.setListBarres(this.EnsembleBarres);
+               B.setTreillis(this);
            }
        } 
     }
     
     public void AddNoeuds(Noeuds N){
-        if(N.getTreillis() != this.Treillis){
+        if(N.getTreillis() != this){
+            if(N.getTreillis()!=null){
             throw new Error ("Noeud est dans un autre treillis");
-        }
-        else{
+            }
+            else{
              this.EnsembleNoeuds.add(N);
-             N.setListNoeuds(this.EnsembleNoeuds);
+             N.setTreillis(this);
         }
+            }
     }
 
    public String MontrerListNoeuds(){

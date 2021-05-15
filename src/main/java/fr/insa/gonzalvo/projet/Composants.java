@@ -13,5 +13,11 @@ public class Composants {
    
     private Treillis Treillis;
     
-    public 
+    public Treillis getTreillis(){
+        return this.Treillis;
+    }
+    
+    public void setTreillis(Treillis Treillis){
+        this.Treillis=Treillis;
+    }
 }
