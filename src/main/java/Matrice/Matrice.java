@@ -11,6 +11,7 @@ package Matrice;
  * @author Admin
  */
 import java.text.DecimalFormat;
+import java.util.Optional;
 public class Matrice {
     /**
  * Représentation de matrice rectangulaire. TD module M2 informatique INSA
@@ -420,20 +421,255 @@ public class Matrice {
         System.out.println(m.add(m.mult(m)));
     }
 
-    public int permuteLigne(int li1, int li2) {
-        return li1;
-    }
-
     public static void main(String[] args) {
         test1();
         test2();
         test3();
     }
-    
-    public Matrice Gauss(Matrice M){
-        Matrice id=new Matrice(this.nbrLig, this.nbrCol);
-        id=id.identite(this.nbrCol);
-        return id;
+     public int permuteLigne(int lig1, int lig2) {
+        // on utilise ici le fait que les tableaux à deux dimensions en java
+        // sont en fait des tableaux de tableaux.
+        // voir ci-dessous une autre définition qui ne se sert pas de cette
+        // propriété, et qui sera sans doute l'implémentation proposée par
+        // les étudiants
+        double[] tempLigne = this.coeffs[lig1];
+        this.coeffs[lig1] = this.coeffs[lig2];
+        this.coeffs[lig2] = tempLigne;
+        if (lig1 == lig2) {
+            return 1;
+        } else {
+            return -1;
+        }
+     }
+     public int permuteLigneV2(int lig1, int lig2) {
+        // on utilise ici le fait que les tableaux à deux dimensions en java
+        // sont en fait des tableaux de tableaux.
+        // voir ci-dessous une autre définition qui ne se sert pas de cette
+        // propriété, et qui sera sans doute l'implémentation proposée par
+        // les étudiants
+        for (int col = 0; col < this.getNbrCol(); col++) {
+            double temp = this.get(lig1, col);
+            this.set(lig1, col, this.get(lig2, col));
+            this.set(lig2, col, temp);
+        }
+        if (Math.abs(lig2 - lig2) % 2 == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * transvection de la ligne lig2 par rapport à la ligne lig1dans le cadre
+     * d'une descente de gauss : pour éviter les erreurs d'arrondis, on met
+     * explicitement à zero M_lig2,lig1. Pour les autres colonnes :
+     * {@code M_lig2,j = M_lig2,j - (M_lig2,lig1 / M_lig1,lig1) * M_lig1,j}
+     *
+     * @param lig1 doit être inférieur au nombre de colonnes de la matrice
+     * @param lig2
+     */
+    public void transvection(int lig1, int lig2) {
+        if (lig1 >= this.getNbrCol()) {
+            throw new Error("lig1 doit être inférieur au nombre de colonnes de la matrice");
+        }
+        if (this.get(lig1, lig1) == 0) {
+            throw new Error("pivot nul : ligne " + lig1 + " Mat :\n" + this);
+        }
+        double p = this.get(lig2, lig1) / this.get(lig1, lig1);
+        for (int col = 0; col < this.getNbrCol(); col++) {
+            if (col == lig1) {
+                this.set(lig2, col, 0);
+            } else {
+                this.set(lig2, col, this.get(lig2, col) - p * this.get(lig1, col));
+            }
+        }
+    }
+
+    /**
+     * trouve une ligne avec un bon pivot. Cette méthode est facile à comprendre
+     * et à programmer, mais assez délicate à définir précisément. En gros, on
+     * en est à l'étape e de la méthode de Gauss. On cherche un pivot pour le
+     * placer en M_e,e par permutation de ligne. n ne considère que les lignes
+     * "en dessous" (lig >= e) de la ligne e, et on veut repérer la ligne ligMax
+     * qui contient le plus grand élément M_lig,i en valeur absolue.
+     *
+     * On a en plus un cas particulier : si tous les éléments M_lig,i sont nuls,
+     * on ne peut pas trouver de pivot, et la méthode le signalera en renvoyant
+     * -1.
+     *
+     * @param e etape dans la methode de Gauss, défini l'élément diagonal, pivot
+     * M_e,e
+     * @return -1 si aucun pivot non nul, sinon numéro de ligne contenant le
+     * plus grand pivot en valeur absolue.
+     */
+    public int lignePlusGrandPivot(int e) {
+        if (e >= this.getNbrLig() || e >= this.getNbrCol()) {
+            throw new Error("mauvais indice de pivot : M_e,e doit exister");
+        }
+        double curMax = Math.abs(this.get(e, e));
+        int imax = e;
+        for (int i = e + 1; i < this.getNbrLig(); i++) {
+            if (Math.abs(this.get(i, e)) > curMax) {
+                curMax = Math.abs(this.get(i, e));
+                imax = i;
+            }
+        }
+        if (curMax <= EPSILON_PIVOT) {
+            return -1;
+        } else {
+            return imax;
+        }
+
+    }
+    /**
+     * Annule les élément sous-diagonaux d'une matrice .
+     *
+     * @return un {@link ResGauss} permettant de connaitre la signature de la
+     * permutation appliquée aux lignes, et le nombre d'étapes effectuées.
+     */
+    public ResGauss descenteGauss() {
+        int e = 0;
+        int imax;
+        int signature = 1;
+        while (e < this.getNbrLig() && e < this.getNbrCol()
+                && (imax = this.lignePlusGrandPivot(e)) != -1) {
+            signature = signature * this.permuteLigne(e, imax);
+            for (int lig = e + 1; lig < this.getNbrLig(); lig++) {
+                this.transvection(e, lig);
+            }
+            e++;
+        }
+        return new ResGauss(e, signature);
+    }
+     public Matrice getColonne(int col) {
+        Matrice res = new Matrice(this.getNbrLig(), 1);
+        for (int lig = 0; lig < this.getNbrLig(); lig++) {
+            res.set(lig, 0, this.get(lig, col));
+        }
+        return res;
+    }
+      public void pivotsUnitaires(int rang) {
+        for (int lig = 0; lig < rang; lig++) {
+            double div = this.get(lig, lig);
+            if (div == 0) {
+                throw new Error("pivot nul : ligne " + lig + " Mat :\n" + this);
+            }
+            for (int col = 0; col < this.getNbrCol(); col++) {
+                this.set(lig, col, this.get(lig, col) / div);
+            }
+        }
+    }
+
+    public void remonteeGauss(int rang) {
+        for (int e = rang - 1; e >= 0; e--) {
+            for (int lig = e - 1; lig >= 0; lig--) {
+                this.transvection(e, lig);
+            }
+        }
+    }
+    public static class ResSysLin {
+
+        /**
+         * vrai ssi le système admet une solution unique
+         */
+        private boolean solUnique;
+        /**
+         * solution du système linéaire. contient null si {@link #solUnique} est
+         * false sinon, contient le vecteur solution sous la forme d'une Matrice
+         * d'une seule colonne.
+         */
+        private Matrice sol;
+
+        private ResSysLin() {
+            this.solUnique = false;
+        }
+
+        private ResSysLin(Matrice sol) {
+            this.solUnique = true;
+            this.sol = sol;
+        }
+
+        public static ResSysLin pasDeSolUnique() {
+            return new ResSysLin();
+        }
+
+        public static ResSysLin sol(Matrice sol) {
+            return new ResSysLin(sol);
+        }
+
+        public String toString() {
+            if (this.solUnique) {
+                return this.sol.toString();
+            } else {
+                return "{pas de sol unique}";
+            }
+        }
+
+    }
+
+
+    public ResSysLin resoudSysLin(Matrice secondMembre) {
+        if (this.getNbrLig() != this.getNbrCol()) {
+            throw new Error("La matrice n'est pas carrée");
+        }
+        if (secondMembre.getNbrCol() != 1) {
+            throw new Error("Le second membre n'est pas un vecteur");
+        }
+        Matrice toGauss = this.concatCol(secondMembre);
+        ResGauss res = toGauss.descenteGauss();
+        if (res.rang == this.getNbrLig()) {
+            toGauss.pivotsUnitaires(res.rang);
+            toGauss.remonteeGauss(res.rang);
+            return ResSysLin.sol(toGauss.getColonne(res.rang));
+        } else {
+            return ResSysLin.pasDeSolUnique();
+        }
+    }
+
+    /**
+     * calcule si possible la matrice inverse.
+     *
+     * @return un Optional contenant la matrice inverse si this est inversible,
+     * null sinon.
+     */
+    public Optional<Matrice> inverse() {
+        if (this.getNbrLig() != this.getNbrCol()) {
+            throw new Error("inverse seulement pour les matrices carrées");
+        }
+        Matrice toGauss = this.concatCol(Matrice.identite(this.getNbrLig()));
+        ResGauss triSup = toGauss.descenteGauss();
+        if (triSup.rang == this.getNbrLig()) {
+            toGauss.pivotsUnitaires(triSup.rang);
+            toGauss.remonteeGauss(triSup.rang);
+            Matrice inverse = toGauss.subCols(this.getNbrCol(), 2 * this.getNbrCol() - 1);
+            return Optional.of(inverse);
+        } else {
+            return Optional.ofNullable(null);
+        }
+    }
+
+    // quelque petites méthodes utilitaires pour tester que le calcul
+    // de l'inverse (et donc de la descente et de la remontée) est correct
+    // en particulier, à cause des erreur d'arrondi, on a besoin de tester
+    // non pas l'égalité exacte, mais l'égalité approchée de deux matrice
+    // on utilisera la norme la plus simple : le max des coeffs (en val absolue)
+    /**
+     * calcule la norme sup, aussi appelée norme "infinie".
+     * {@code ||M|| = sup(i in 0..nbrLig-1 ; j in 0..nbrCol-1 ; | M_i,j |}
+     *
+     * @return
+     */
+    public double normeSup() {
+        double max = 0;
+        for (int lig = 0; lig < this.getNbrLig(); lig++) {
+            for (int col = 0; col < this.getNbrCol(); col++) {
+                double cur = Math.abs(this.get(lig, col));
+                if (cur > max) {
+                    max = cur;
+                }
+            }
+        }
+        return max;
     }
 
 }
