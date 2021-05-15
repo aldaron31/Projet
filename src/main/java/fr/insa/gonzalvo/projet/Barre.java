@@ -18,14 +18,10 @@ public class Barre extends Composants {
     private Type_Barre type;
     private double traction;
     
-    /*
-    public Treillis getTreillisBarre(){
-        return this.TreillisBarre;
+    public Barre(Noeuds ND,Noeuds NF){
+        this.NDebut = ND;
+        this.NFin = NF;
     }
-    
-    public void setTreillisBarre(Treillis Treillis){
-        this.TreillisBarre = Treillis ;
-    }
-*/
+
   
 }

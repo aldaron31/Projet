@@ -39,14 +39,14 @@ public abstract class Figure {
     /**
      * null si aucun groupe
      */
-    private Groupe groupe;
+    private Treillis treillis;
 
-    public Groupe getGroupe() {
-        return groupe;
+    public Treillis getTreillis() {
+        return this.treillis;
     }
 
-    void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
+    void setTreillis(Treillis treillis) {
+        this.treillis = treillis;
     }
 
     public abstract double maxX();
