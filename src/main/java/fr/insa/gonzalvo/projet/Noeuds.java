@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author gonza
  */
-public abstract class Noeuds extends Composants {
+public abstract class Noeuds extends Figure {
     
     // identificateur
 /*    protected int identificateur;
