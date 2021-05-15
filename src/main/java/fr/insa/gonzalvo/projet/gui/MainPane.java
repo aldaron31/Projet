@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import fr.insa.gonzalvo.projet.Groupe;
+import fr.insa.gonzalvo.projet.Point;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
@@ -80,11 +81,8 @@ public class MainPane extends BorderPane {
         this.setLeft(vbGauche);
         
         this.bGrouper = new Button("Grouper");
-        this.bGrouper.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                System.out.println("bouton Grouper cliqué");
-            }
+        this.bGrouper.setOnAction((t) -> {
+            this.controleur.boutonGrouper(t);
         });
         
         this.cpCouleur = new ColorPicker(Color.BLACK);

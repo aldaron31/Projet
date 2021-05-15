@@ -21,6 +21,7 @@ public class Point extends FigureSimple {
     public static double RAYON_IN_DRAW = 5;
     private double px;
     private double py;
+    private Identificateur num;
 
     public Point() {
         this(0.0, 0.0,Color.BLACK);

@@ -10,8 +10,20 @@ package fr.insa.gonzalvo.projet;
  * @author gonza
  */
 public class Identificateur {
-    public int Tab_Noeuds[];
-    public int Tab_Appui[];
-    public int[] Tab_Barre= new int [100];
+    private int id;
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

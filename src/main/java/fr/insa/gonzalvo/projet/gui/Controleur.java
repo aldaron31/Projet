@@ -26,6 +26,7 @@ public class Controleur {
     
     private double[] pos1 = new double[2];
     private List<Figure> selection;
+    private List<Point> selectionpoint;
     
     public Controleur(MainPane vue) {
         this.vue = vue;
@@ -84,16 +85,19 @@ public class Controleur {
             model.add(new Point(px, py, col));
             this.vue.redrawAll();
         } else if (this.etat == 40) {
-            this.pos1[0] = t.getX();
-            this.pos1[1] = t.getY();
+            Point pclic = new Point(t.getX(), t.getY());
+            Figure proche = this.vue.getModel().plusProche(pclic, Double.MAX_VALUE);
+            // ajouter une condition point
+        //    this.selectionpoint.clear();
+        //    this.selectionpoint.add(proche);
             this.changeEtat(41);
         } else if (this.etat == 41) {
-            double px2 = t.getX();
-            double py2 = t.getY();
+            Point pclic = new Point(t.getX(), t.getY());
+            Figure proche = this.vue.getModel().plusProche(pclic, Double.MAX_VALUE);
             Color col = this.vue.getcpCouleur().getValue();
+        //    this.selectionpoint.add(proche);
             this.vue.getModel().add(
-                new Segment_Terrain(new Point(this.pos1[0], this.pos1[1]),
-                    new Point(px2,py2), col));
+                new Segment_Terrain(selectionpoint.get(0), selectionpoint.get(1)));
             this.vue.redrawAll();
             this.changeEtat(40);
         }
@@ -136,6 +140,15 @@ public class Controleur {
             for (Figure f : this.selection) {
                 f.changeCouleur(value);
             }
+            this.vue.redrawAll();
+        }
+    }
+    public void boutonGrouper(ActionEvent t) {
+        if (this.etat == 20 && this.selection.size() > 1) {
+            // normalement le bouton est disabled dans le cas contraire
+            Groupe ssGroupe = this.vue.getModel().sousGroupe(selection);
+            this.selection.clear();
+            this.selection.add(ssGroupe);
             this.vue.redrawAll();
         }
     }
