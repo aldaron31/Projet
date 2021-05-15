@@ -10,5 +10,8 @@ package fr.insa.gonzalvo.projet;
  * @author Admin
  */
 public class Composants {
+   
+    private Treillis Treillis;
     
+    public 
 }

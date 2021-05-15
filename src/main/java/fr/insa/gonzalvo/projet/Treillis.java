@@ -44,7 +44,7 @@ public class Treillis {
         this.EnsembleNoeuds = EnsembleNoeuds;
     }
     
-    
+    //hasta aquí todo bien
     
     public void AddBarre(Barre B){
        if(B.getListBarres() != this.EnsembleBarres){
@@ -59,7 +59,7 @@ public class Treillis {
     }
     
     public void AddNoeuds(Noeuds N){
-        if(N.getListNoeuds() != this.EnsembleNoeuds){
+        if(N.getTreillis() != this.Treillis){
             throw new Error ("Noeud est dans un autre treillis");
         }
         else{

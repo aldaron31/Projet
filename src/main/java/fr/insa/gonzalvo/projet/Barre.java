@@ -12,7 +12,6 @@ import java.util.List;
  * @author gonza
  */
 public class Barre extends Composants {
-    private Treillis TreillisBarre;
     private int id;
     private Noeuds NDebut;
     private Noeuds NFin;
@@ -28,11 +27,5 @@ public class Barre extends Composants {
         this.TreillisBarre = Treillis ;
     }
 */
-    public List<Barre> getListBarres(){
-        return this.TreillisBarre.getEnsembleBarres();
-    }
-    
-    public void setListBarres(List<Barre> ListBarre){
-        this.TreillisBarre.setEnsembleBarres(ListBarre);
-    }
+  
 }
