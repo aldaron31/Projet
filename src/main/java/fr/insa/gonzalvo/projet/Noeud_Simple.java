@@ -49,6 +49,8 @@ public class Noeud_Simple extends Noeuds {
        return this.Ny;
     }
 
+   
+
     @Override
     public double distancePoint(Point p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

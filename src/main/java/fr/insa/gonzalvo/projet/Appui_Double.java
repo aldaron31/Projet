@@ -16,14 +16,10 @@ import javafx.scene.paint.Color;
  */
 public class Appui_Double extends Appui {
 
-    public Appui_Double(Triangle_Terrain TT,){
-        this.TT=TT;
-        
-    }
             
     @Override
     public double maxX() {
-        return 
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

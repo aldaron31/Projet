@@ -422,9 +422,46 @@ public class Matrice {
     }
 
     public static void main(String[] args) {
-        test1();
-        test2();
-        test3();
+        System.out.println("----- treillis portique du sujet de projet");
+        Matrice mat = new Matrice(6, 6);
+        double a = Math.sqrt(2) / 2;
+        int i = 0;
+        mat.coeffs[i][0] = a;
+        mat.coeffs[i][3] = 1;
+
+        i++;
+        mat.coeffs[i][0] = -a;
+        mat.coeffs[i][2] = -1;
+        mat.coeffs[i][4] = 1;
+
+        i++;
+        mat.coeffs[i][1] = a;
+        mat.coeffs[i][5] = 1;
+
+        i++;
+        mat.coeffs[i][1] = a;
+        mat.coeffs[i][2] = 1;
+
+        i++;
+        mat.coeffs[i][0] = -a;
+        mat.coeffs[i][1] = -a;
+
+        i++;
+        mat.coeffs[i][0] = a;
+        mat.coeffs[i][1] = -a;
+        System.out.println("mat : \n" + mat);
+
+        Matrice sm = new Matrice(6, 1);
+        sm.coeffs[5][0] = 1000;
+        System.out.println("second membre : \n" + sm);
+
+        ResSysLin res = mat.resoudSysLin(sm);
+        if (res.solUnique) {
+            System.out.println("sol : \n" + res.sol);
+        } else {
+            System.out.println("pas de sol");
+        }
+    
     }
      public int permuteLigne(int lig1, int lig2) {
         // on utilise ici le fait que les tableaux à deux dimensions en java
@@ -671,5 +708,4 @@ public class Matrice {
         }
         return max;
     }
-
 }

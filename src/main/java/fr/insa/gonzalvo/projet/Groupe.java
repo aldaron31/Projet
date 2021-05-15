@@ -451,3 +451,4 @@ public class Groupe extends Figure {
     }
 
 }
+
