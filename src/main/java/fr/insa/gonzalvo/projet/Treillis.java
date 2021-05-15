@@ -58,7 +58,7 @@ public class Treillis {
        } 
     }
     
-    public void AddNoeuds(Noeud_Simple N){
+    public void AddNoeuds(Noeuds N){
         if(N.getListNoeuds() != this.EnsembleNoeuds){
             throw new Error ("Noeud est dans un autre treillis");
         }
@@ -90,6 +90,6 @@ public class Treillis {
     Noeud_Simple p3= new Noeud_Simple(4,2);   
    }
    public static void main(String[] args){
-       tste
+      
    }
 }

@@ -11,7 +11,8 @@ import java.util.List;
  *
  * @author gonza
  */
-public abstract class Noeuds {
+public abstract class Noeuds extends Composants {
+    
     // identificateur
 /*    protected int identificateur;
     private Treillis TreillisNoeuds;
