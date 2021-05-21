@@ -5,6 +5,10 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import static fr.insa.gonzalvo.projet.Point.RAYON_IN_DRAW;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 /**
  *
  * @author gonza
@@ -14,4 +18,7 @@ public abstract class Appui extends Noeuds{
     protected Triangle_Terrain TT;
     protected int numero_point;
     protected double position_segement;
+    
+    
+    
 }

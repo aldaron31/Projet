@@ -6,12 +6,16 @@
 package fr.insa.gonzalvo.projet;
 
 import java.util.List;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
  * @author gonza
  */
-public abstract class Noeuds extends Figure {
+public abstract class Noeuds {
+    
+    private double px;
+    private double py;
     
     // identificateur
 /*    protected int identificateur;
@@ -44,4 +48,33 @@ public abstract class Noeuds extends Figure {
         this.TreillisNoeuds.setEnsembleNoeuds(ListNoeuds);
     }
 */
+    public abstract void dessine(GraphicsContext context);
+
+    /**
+     * @return the px
+     */
+    public double getPx() {
+        return px;
+    }
+
+    /**
+     * @param px the px to set
+     */
+    public void setPx(double px) {
+        this.px = px;
+    }
+
+    /**
+     * @return the py
+     */
+    public double getPy() {
+        return py;
+    }
+
+    /**
+     * @param py the py to set
+     */
+    public void setPy(double py) {
+        this.py = py;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import static fr.insa.gonzalvo.projet.Point.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
@@ -15,7 +16,7 @@ import javafx.scene.paint.Color;
  *
  * @author gonza
  */
-public class Barre extends Figure {
+public class Barre {
     private int id;
     private Noeuds NDebut;
     private Noeuds NFin;
@@ -27,50 +28,8 @@ public class Barre extends Figure {
         this.NFin = NF;
     }
 
-    @Override
-    public double maxX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double minX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double maxY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double minY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double distancePoint(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void dessine(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        context.setStroke(Color.BLACK);
+        context.strokeLine(this.NDebut.getPx(), this.NDebut.getPy(), this.NFin.getPx(), this.NFin.getPy());
     }
-
-    @Override
-    public void dessineSelection(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void changeCouleur(Color value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void save(Writer w, Numeroteur<Figure> num) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-  
 }

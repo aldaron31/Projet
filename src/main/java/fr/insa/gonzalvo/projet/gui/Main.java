@@ -5,7 +5,7 @@
  */
 package fr.insa.gonzalvo.projet.gui;
 
-import fr.insa.gonzalvo.projet.Groupe;
+import fr.insa.gonzalvo.projet.Treillis;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.scene.Scene;
@@ -20,7 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        Scene sc = new Scene(new MainPane(Groupe.groupeTest()),800,600);
+        Scene sc = new Scene(new MainPane(Treillis.TreillisTest()),1000,650);
         stage.setScene(sc);
         stage.setTitle("Nouveau");
           stage.show();

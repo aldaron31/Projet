@@ -17,64 +17,22 @@ import javafx.scene.paint.Color;
 public class Noeud_Simple extends Noeuds {
     //private Point point;
     //private int nbr_barre[];
-    private double Nx;
-    private double Ny;
+    private double Px;
+    private double Py;
+    private double RAYON_IN_DRAW = 5;
     
     public Noeud_Simple(Point P){
-        this.Nx = P.getPx();
-        this.Ny = P.getPy();
+        this.Px = P.getPx();
+        this.Py = P.getPy();
     }
     public Noeud_Simple(double x,double y){
-        this.Nx=x;
-        this.Ny=y;
+        this.Px=x;
+        this.Py=y;
     }
-
-    @Override
-    public double maxX() {
-        return this.Nx;
-    }
-
-    @Override
-    public double minX() {
-        return this.Nx;
-    }
-
-    @Override
-    public double maxY() {
-       return this.Ny;
-    }
-
-    @Override
-    public double minY() {
-       return this.Ny;
-    }
-
-   
-
-    @Override
-    public double distancePoint(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public void dessine(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        context.setFill(Color.BLACK);
+        context.fillOval(this.Px-RAYON_IN_DRAW, this.Py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
-
-    @Override
-    public void dessineSelection(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void changeCouleur(Color value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void save(Writer w, Numeroteur<Figure> num) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }

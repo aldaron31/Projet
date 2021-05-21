@@ -5,8 +5,8 @@
  */
 package fr.insa.gonzalvo.projet.gui;
 
-import fr.insa.gonzalvo.projet.Figure;
-import fr.insa.gonzalvo.projet.Groupe;
+import fr.insa.gonzalvo.projet.Terrain;
+import fr.insa.gonzalvo.projet.Treillis;
 import java.util.List;
 import javafx.scene.layout.Pane;
 import javafx.scene.canvas.Canvas;
@@ -41,14 +41,17 @@ public class DessinTreillis extends Pane {
     }
     public void redrawAll() {
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
-        Groupe model =  this.main.getModel();
+        Treillis model =  this.main.getModel();
+        Terrain Tmodel = this.main.getModel().getTerrainT();
+        System.out.println("redraw");
         model.dessine(context);
-        List<Figure> select = this.main.getControleur().getSelection();
+        Tmodel.dessine(context);
+/*      List<Figure> select = this.main.getControleur().getSelection();
         if (! select.isEmpty()) {
             for (Figure f : select) {
                 f.dessineSelection(context);
             }
-        }
+        } */
         
     }
 }

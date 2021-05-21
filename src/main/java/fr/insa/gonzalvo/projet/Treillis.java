@@ -11,22 +11,34 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import fr.insa.gonzalvo.projet.Terrain;
 /**
  *
  * @author gonza
  */
-public class Treillis extends Figure {
+public class Treillis {
     
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
+    private Terrain TerrainT;
+    private List<Noeuds> contientNoeuds;
+    private List<Barre> contientBarre;
    //Après on a aussi catalogue barres et le terrain mais sont des eléments simples
     
-    public Treillis(List<Barre> EnsembleBarres,List<Noeuds> EnsembleNoeuds){
+    public Treillis(List<Barre> EnsembleBarres,List<Noeuds> EnsembleNoeuds, Terrain Terrain){
+        this.TerrainT = Terrain;
         this.EnsembleBarres= EnsembleBarres;
         this.EnsembleNoeuds= EnsembleNoeuds;
     }
     
+    public Treillis(Terrain Terrain){
+        this.TerrainT = Terrain;
+        this.EnsembleBarres=new ArrayList<Barre>();
+        this.EnsembleNoeuds=new ArrayList<Noeuds>();
+    }
+    
     public Treillis(){
+        this.TerrainT = new Terrain();
         this.EnsembleBarres=new ArrayList<Barre>();
         this.EnsembleNoeuds=new ArrayList<Noeuds>();
     }
@@ -48,9 +60,10 @@ public class Treillis extends Figure {
         this.EnsembleNoeuds = EnsembleNoeuds;
     }
     
+    
     //hasta aquí todo bien
     
-    public void AddBarre(Barre B){
+/*    public void AddBarre(Barre B){
        if(B.getTreillis() != this){
            if(B.getTreillis()!= null){
                throw new Error("Barre est dans un autre treillis");
@@ -73,19 +86,19 @@ public class Treillis extends Figure {
         }
             }
     }
-
+*/
    public String MontrerListNoeuds(){
        String res = "Groupe {\n";
-       for (int i = 0; i<this.EnsembleNoeuds.size();i++){
-           res= res + (this.EnsembleNoeuds.get(i).toString()+"  ")+"\n";
+       for (int i = 0; i<this.getEnsembleNoeuds().size();i++){
+           res= res + (this.getEnsembleNoeuds().get(i).toString()+"  ")+"\n";
        }
        return res+"}";
    }
    
    public String MontrerListBarres(){
        String res = "Goupe {\n";
-       for(int i = 0; i<this.EnsembleBarres.size();i++){
-           res = res + (this.EnsembleBarres.get(i).toString()+"  ")+"\n"; 
+       for(int i = 0; i<this.getEnsembleBarres().size();i++){
+           res = res + (this.getEnsembleBarres().get(i).toString()+"  ")+"\n"; 
        }
        return res+"}";
    }
@@ -98,49 +111,35 @@ public class Treillis extends Figure {
    public static void main(String[] args){
       
    }
+   
+   public static Treillis TreillisTest() {
+       
+       Treillis TreillisTest = new Treillis(Terrain.TerrainTest());
+       
+       return TreillisTest;
+   }
 
-    @Override
-    public double maxX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double minX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double maxY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double minY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double distancePoint(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void dessine(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(Noeuds n : this.getEnsembleNoeuds()) {
+            n.dessine(context);
+        }
+        for(Barre b : this.getEnsembleBarres()) {
+            b.dessine(context);
+        }
+        
     }
 
-    @Override
-    public void dessineSelection(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @return the TerrainT
+     */
+    public Terrain getTerrainT() {
+        return TerrainT;
     }
 
-    @Override
-    public void changeCouleur(Color value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void save(Writer w, Numeroteur<Figure> num) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @param TerrainT the TerrainT to set
+     */
+    public void setTerrainT(Terrain TerrainT) {
+        this.TerrainT = TerrainT;
     }
 }

@@ -10,13 +10,14 @@ import java.io.IOException;
 import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.color;
 import recup.Lire;
 
 /**
  *
  * @author gonza
  */
-public class Point extends FigureSimple {
+public class Point {
     
     public static double RAYON_IN_DRAW = 5;
     private double px;
@@ -32,7 +33,7 @@ public class Point extends FigureSimple {
      }
 
     public Point(double px, double py, Color c) {
-        super(c);
+        
         this.px = px;
         this.py = py;
     }
@@ -109,54 +110,10 @@ testDistance();
         double py = Lire.d();
         return new Point(px, py);
     }
-
-    @Override
-    public double maxX() {
-        return this.px;
-    }
-
-    @Override
-    public double minX() {
-        return this.px;
-    }
-
-    @Override
-    public double maxY() {
-        return this.py;
-    }
-
-    @Override
-    public double minY() {
-        return this.py;
-    }
-
-    @Override
-    public double distancePoint(Point p) {
-        double dx = this.px - p.px;
-        double dy = this.py - p.py;
-        return Math.sqrt(dx*dx+dy*dy);
-
-    }
-
-    @Override
+    
+    
     public void dessine(GraphicsContext context) {
-        context.setFill(this.getCouleur());
+        context.setFill(Color.GREEN);
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
-
-    @Override
-    public void dessineSelection(GraphicsContext context) {
-        context.setFill(Figure.COULEUR_SELECTION);
-        context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
-    }
-
-    @Override
-    public void save(Writer w, Numeroteur<Figure> num) throws IOException {
-        if(! num.objExist(this)) {
-            int id = num.creeID(this);
-            w.append("Point;"+id+";"+this.px+";"+this.py+
-                    ";" + FigureSimple.saveColor(this.getCouleur()) + "\n");
-        }
-    }
-
 }

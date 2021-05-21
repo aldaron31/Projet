@@ -13,8 +13,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import fr.insa.gonzalvo.projet.Groupe;
 import fr.insa.gonzalvo.projet.Point;
+import fr.insa.gonzalvo.projet.Terrain;
+import fr.insa.gonzalvo.projet.Treillis;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
@@ -25,7 +26,7 @@ import javafx.scene.paint.Color;
  */
 public class MainPane extends BorderPane {
     
-    private Groupe model;
+    private Treillis model;
     private Controleur controleur;
     
     private RadioButton rbSelect;
@@ -33,6 +34,7 @@ public class MainPane extends BorderPane {
     private RadioButton rbBarres;
     private RadioButton rbPoints;
     private RadioButton rbSegments_Terrain;
+    private RadioButton rbTrianglesT;
     
     private Button bGrouper;
     private Button bCalcul;
@@ -41,10 +43,10 @@ public class MainPane extends BorderPane {
     private DessinTreillis cDessin;
     
     public MainPane() {
-        this(new Groupe());
+        this(new Treillis());
     }
     
-    public MainPane(Groupe model){
+    public MainPane(Treillis model){
         this.model = model;
         this.controleur = new Controleur(this);
         
@@ -68,6 +70,10 @@ public class MainPane extends BorderPane {
         this.rbSegments_Terrain.setOnAction((t) -> {
             this.controleur.boutonSegments(t);
         });
+        this.rbTrianglesT = new RadioButton("Triangles");
+        this.rbTrianglesT.setOnAction((t) -> {
+            this.controleur.boutonTriangles(t);
+        });
         
         ToggleGroup bgEtat = new ToggleGroup();
         this.rbSelect.setToggleGroup(bgEtat);
@@ -75,12 +81,13 @@ public class MainPane extends BorderPane {
         this.rbBarres.setToggleGroup(bgEtat);
         this.rbPoints.setToggleGroup(bgEtat);
         this.rbSegments_Terrain.setToggleGroup(bgEtat);
+        this.rbTrianglesT.setToggleGroup(bgEtat);
         this.rbPoints.setSelected(true); 
         
-        VBox vbGauche = new VBox(this.getRbSelect(), this.getRbNoeuds(), this.getRbBarres(), this.getRbPoints(), this.getRbSegments_Terrain());
+        VBox vbGauche = new VBox(this.getRbSelect(), this.getRbNoeuds(), this.getRbBarres(), this.getRbPoints(), this.getRbSegments_Terrain(), this.getRbTrianglesT());
         this.setLeft(vbGauche);
         
-        this.bGrouper = new Button("Grouper");
+/*        this.bGrouper = new Button("Grouper");
         this.bGrouper.setOnAction((t) -> {
             this.controleur.boutonGrouper(t);
         });
@@ -88,14 +95,14 @@ public class MainPane extends BorderPane {
         this.cpCouleur = new ColorPicker(Color.BLACK);
         this.cpCouleur.setOnAction((t) -> {
             this.controleur.changeColor(this.cpCouleur.getValue());
-        });
+        });*/
         
         this.bCalcul = new Button("Calcul");
         this.bCalcul.setOnAction((t) -> {
             System.out.println("bouton Calcul cliqué");
         });
         
-        VBox vbDroite = new VBox(this.getbGrouper(), this.getbCalcul(), this.getcpCouleur());
+        VBox vbDroite = new VBox(this.getbCalcul());
         this.setRight(vbDroite);
         
         this.cDessin = new DessinTreillis(this);
@@ -107,7 +114,7 @@ public class MainPane extends BorderPane {
         this.cDessin.redrawAll();
     }
     
-    public Groupe getModel() {
+    public Treillis getModel() {
         return model;
     }
 
@@ -176,6 +183,13 @@ public class MainPane extends BorderPane {
      */
     public RadioButton getRbSegments_Terrain() {
         return rbSegments_Terrain;
+    }
+
+    /**
+     * @return the rbTrianglesT
+     */
+    public RadioButton getRbTrianglesT() {
+        return rbTrianglesT;
     }
     
 }
