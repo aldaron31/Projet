@@ -65,17 +65,20 @@ public class Treillis {
     }
 
       public static void testArray(){
+          Barre Be;
         Noeud_Simple p1= new Noeud_Simple(1,2);
         Noeud_Simple p2= new Noeud_Simple(3,2);
         Barre B= new Barre(p1,p2);
         Treillis T= new Treillis();
+       Be=T.getbarreTableau(1);
+        
         
 }
 
     
     //hasta aquí todo bien
-    
-/*    public void AddBarre(Barre B){
+    /*
+    public void AddBarre(Barre B){
        if(B.getTreillis() != this){
            if(B.getTreillis()!= null){
                throw new Error("Barre est dans un autre treillis");
@@ -86,7 +89,7 @@ public class Treillis {
            }
        } 
     }
-    
+    /*
     public void AddNoeuds(Noeuds N){
         if(N.getTreillis() != this){
             if(N.getTreillis()!=null){
