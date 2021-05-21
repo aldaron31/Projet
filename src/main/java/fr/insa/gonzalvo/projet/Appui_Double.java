@@ -17,6 +17,11 @@ import javafx.scene.paint.Color;
 public class Appui_Double extends Appui {
     
     public static double RAYON_IN_DRAW = 5;
+
+    @Override
+    public void dessine(GraphicsContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

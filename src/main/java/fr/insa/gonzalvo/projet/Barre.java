@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 public class Barre {
     private int id;
     private Noeuds NDebut;
-    private Noeuds NFin;
+    private Noeuds NFin; 
     private Type_Barre type;
     private double traction;
     
@@ -27,6 +27,15 @@ public class Barre {
         this.NDebut = ND;
         this.NFin = NF;
     }
+    
+    public Noeuds getNdebut() {
+        return this.NDebut;
+    }
+    
+    public Noeuds getNFin() {
+        return this.NFin;
+    }
+    
 
     public void dessine(GraphicsContext context) {
         context.setStroke(Color.BLACK);

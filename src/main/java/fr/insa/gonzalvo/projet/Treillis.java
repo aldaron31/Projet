@@ -126,7 +126,6 @@ public class Treillis {
         for(Barre b : this.getEnsembleBarres()) {
             b.dessine(context);
         }
-        
     }
 
     /**

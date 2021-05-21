@@ -641,7 +641,6 @@ public class Matrice {
                 return "{pas de sol unique}";
             }
         }
-
     }
 
 

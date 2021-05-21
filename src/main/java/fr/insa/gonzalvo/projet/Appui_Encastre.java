@@ -15,6 +15,11 @@ import javafx.scene.paint.Color;
  * @author Elève
  */
 public class Appui_Encastre extends Appui {
+
+    @Override
+    public void dessine(GraphicsContext context) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
