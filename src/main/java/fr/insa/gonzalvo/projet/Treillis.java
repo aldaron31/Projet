@@ -60,6 +60,18 @@ public class Treillis {
         this.EnsembleNoeuds = EnsembleNoeuds;
     }
     
+      public Barre getbarreTableau(int i){
+        return this.getEnsembleBarres().get(i);
+    }
+
+      public static void testArray(){
+        Noeud_Simple p1= new Noeud_Simple(1,2);
+        Noeud_Simple p2= new Noeud_Simple(3,2);
+        Barre B= new Barre(p1,p2);
+        Treillis T= new Treillis();
+        
+}
+
     
     //hasta aquí todo bien
     
