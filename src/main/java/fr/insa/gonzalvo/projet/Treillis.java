@@ -17,7 +17,8 @@ import fr.insa.gonzalvo.projet.Terrain;
  * @author gonza
  */
 public class Treillis {
-    
+
+  
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
     private Terrain TerrainT;
@@ -117,12 +118,15 @@ public class Treillis {
        }
        return res+"}";
    }
-   
-   public static void TestPoint(){
-    Noeud_Simple p1= new Noeud_Simple(1,2);
-    Noeud_Simple p2= new Noeud_Simple(3,2);
-    Noeud_Simple p3= new Noeud_Simple(4,2);   
+   /*
+   public static void NoeudPoint(){
+    Noeud_Simple n1= new Noeud_Simple(1,2);
+    Noeud_Simple n2= new Noeud_Simple(3,2);
+    Noeud_Simple n3= new Noeud_Simple(4,2);   
+    Noeud_Simple n4= new Noeud_Simple(5,3);
+    Barre b1= Barre(n1,n2);
    }
+   */
    public static void main(String[] args){
       
    }

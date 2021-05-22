@@ -47,7 +47,7 @@ public abstract class Noeuds {
     public void setListNoeuds(List<Noeuds> ListNoeuds){
         this.TreillisNoeuds.setEnsembleNoeuds(ListNoeuds);
     }
-*/
+*/  
     public abstract void dessine(GraphicsContext context);
 
     /**

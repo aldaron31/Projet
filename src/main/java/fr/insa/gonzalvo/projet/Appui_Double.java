@@ -20,7 +20,8 @@ public class Appui_Double extends Appui {
 
     @Override
     public void dessine(GraphicsContext context) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        context.setFill(Color.BLACK);
+        
     }
     
     

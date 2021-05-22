@@ -27,7 +27,12 @@ public class Barre {
         this.NDebut = ND;
         this.NFin = NF;
     }
-    
+    /*
+       public Barre(Noeud_Simple ND,Noeud_Simple NF){
+        this.NDebut = ND;
+        this.NFin = NF;
+    }
+    */
     public Noeuds getNdebut() {
         return this.NDebut;
     }
