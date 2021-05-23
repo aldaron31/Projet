@@ -16,9 +16,12 @@ import javafx.scene.layout.VBox;
 import fr.insa.gonzalvo.projet.Point;
 import fr.insa.gonzalvo.projet.Terrain;
 import fr.insa.gonzalvo.projet.Treillis;
+import java.io.File;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  *
@@ -29,24 +32,39 @@ public class MainPane extends BorderPane {
     private Treillis model;
     private Controleur controleur;
     
+    private Stage inStage;
+    private File curFile;
+    
     private RadioButton rbSelect;
-    private RadioButton rbNoeuds;
-    private RadioButton rbBarres;
     private RadioButton rbPoints;
     private RadioButton rbSegments_Terrain;
     private RadioButton rbTrianglesT;
+    private RadioButton rbNoeuds;
+    private RadioButton rbNoeuds_Simple;
+    private RadioButton rbAppui;
+    private RadioButton rbAppui_Simple;
+    private RadioButton rbAppui_Double;
+    private RadioButton rbAppui_Encastre;
+    private RadioButton rbBarres;
     
-    private Button bGrouper;
+    private Button bTerrain;
+    private Button bTreillis;
     private Button bCalcul;
-    private ColorPicker cpCouleur;
     
     private DessinTreillis cDessin;
+    private MainMenu menu;
     
-    public MainPane() {
-        this(new Treillis());
+    public MainPane(Stage inStage) {
+        this(inStage, new Treillis());
+    }
+
+    public MainPane(Stage inStage, Treillis model) {
+        this(inStage, null, model);
     }
     
-    public MainPane(Treillis model){
+    public MainPane(Stage inStage, File fromFile, Treillis model){
+        this.inStage = inStage;
+        this.curFile = fromFile;
         this.model = model;
         this.controleur = new Controleur(this);
         
@@ -54,14 +72,7 @@ public class MainPane extends BorderPane {
         this.rbSelect.setOnAction((t) -> {
             this.controleur.boutonSelect(t);
         });
-        this.rbNoeuds = new RadioButton("Noeuds");
-        this.rbNoeuds.setOnAction((t) -> {
-            this.controleur.boutonNoeuds(t);
-        });
-        this.rbBarres = new RadioButton("Barres");
-        this.rbBarres.setOnAction((t) -> {
-            this.controleur.boutonBarres(t);
-        });
+        
         this.rbPoints = new RadioButton("Points");
         this.rbPoints.setOnAction((t) -> {
             this.controleur.boutonPoints(t);
@@ -74,7 +85,14 @@ public class MainPane extends BorderPane {
         this.rbTrianglesT.setOnAction((t) -> {
             this.controleur.boutonTriangles(t);
         });
-        
+        this.rbNoeuds = new RadioButton("Noeuds");
+        this.rbNoeuds.setOnAction((t) -> {
+            this.controleur.boutonNoeuds(t);
+        });
+        this.rbBarres = new RadioButton("Barres");
+        this.rbBarres.setOnAction((t) -> {
+            this.controleur.boutonBarres(t);
+        });
         ToggleGroup bgEtat = new ToggleGroup();
         this.rbSelect.setToggleGroup(bgEtat);
         this.rbNoeuds.setToggleGroup(bgEtat);
@@ -87,27 +105,31 @@ public class MainPane extends BorderPane {
         VBox vbGauche = new VBox(this.getRbSelect(), this.getRbNoeuds(), this.getRbBarres(), this.getRbPoints(), this.getRbSegments_Terrain(), this.getRbTrianglesT());
         this.setLeft(vbGauche);
         
-/*        this.bGrouper = new Button("Grouper");
-        this.bGrouper.setOnAction((t) -> {
-            this.controleur.boutonGrouper(t);
+        this.bTerrain = new Button("Terrain");
+        this.bTerrain.setOnAction((t) -> {
+            this.controleur.boutonTerrain(t);
         });
         
-        this.cpCouleur = new ColorPicker(Color.BLACK);
-        this.cpCouleur.setOnAction((t) -> {
-            this.controleur.changeColor(this.cpCouleur.getValue());
-        });*/
+        this.bTreillis = new Button("Treillis");
+        this.bTreillis.setOnAction((t) -> {
+            this.controleur.boutonTreillis(t);
+        });
         
         this.bCalcul = new Button("Calcul");
         this.bCalcul.setOnAction((t) -> {
             System.out.println("bouton Calcul cliqué");
         });
         
-        VBox vbDroite = new VBox(this.getbCalcul());
+        VBox vbDroite = new VBox(this.getbCalcul(), this.getbTerrain(), this.getbTreillis());
         this.setRight(vbDroite);
         
         this.cDessin = new DessinTreillis(this);
         this.setCenter(this.cDessin);
-        this.controleur.changeEtat(30);
+        
+        this.menu = new MainMenu(this);
+        this.setTop(this.menu);
+        
+        this.controleur.changeEtat(10);
     }
     
     public void redrawAll() {
@@ -146,8 +168,8 @@ public class MainPane extends BorderPane {
     /**
      * @return the bGrouper
      */
-    public Button getbGrouper() {
-        return bGrouper;
+    public Button getbTerrain() {
+        return bTerrain;
     }
 
     /**
@@ -160,8 +182,8 @@ public class MainPane extends BorderPane {
     /**
      * @return the cpCouleur
      */
-    public ColorPicker getcpCouleur() {
-        return cpCouleur;
+    public Button getbTreillis() {
+        return bTreillis;
     }
 
     /**
@@ -190,6 +212,18 @@ public class MainPane extends BorderPane {
      */
     public RadioButton getRbTrianglesT() {
         return rbTrianglesT;
+    }
+
+    public Stage getInStage() {
+        return inStage;
+    }
+
+    public File getCurFile() {
+        return curFile;
+    }
+
+    public void setCurFile(File curFile) {
+        this.curFile = curFile;
     }
     
 }

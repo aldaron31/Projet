@@ -5,7 +5,10 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import java.io.IOException;
+import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -19,6 +22,7 @@ public class Triangle_Terrain {
    private Segment_Terrain s2;
    private Segment_Terrain s3;
    private int id;
+   private Color couleur = Color.GREEN;
    
    //constructeur où on indique les 3 points
    public Triangle_Terrain(Point p1, Point p2, Point p3) {
@@ -29,6 +33,17 @@ public class Triangle_Terrain {
        this.s1 = new Segment_Terrain(p1, p2);
        this.s2 = new Segment_Terrain(p2, p3);
        this.s3 = new Segment_Terrain(p3, p1);
+       
+   }
+   
+   public Triangle_Terrain(Point p1, Point p2, Point p3, Segment_Terrain s1, Segment_Terrain s2, Segment_Terrain s3, Color col) {
+       this.couleur = col;
+       this.p1 = p1;
+       this.p2 = p2;
+       this.p3 = p3;
+       this.s1 = s1;
+       this.s2 = s2;
+       this.s3 = s3;
        
    }
     /**
@@ -214,4 +229,26 @@ public class Triangle_Terrain {
            return false;
        }
    }
+    
+    public void save(Writer w, Numeroteur<Triangle_Terrain> num, Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
+        if(! num.objExist(this)) {
+            int id = num.creeID(this);
+            this.p1.save(w, numP);
+            this.p2.save(w, numP);
+            this.p3.save(w, numP);
+            this.s1.save(w, numS, numP);
+            this.s2.save(w, numS, numP);
+            this.s3.save(w, numS, numP);
+            w.append("TriangleT;"+id+";"+numP.getID(this.p1)+";"+numP.getID(this.p2)+
+                    ";"+numP.getID(this.p3)+";"+numS.getID(this.s1)+";"+numS.getID(this.s2)+
+                    ";"+numS.getID(this.s3)+";" + Triangle_Terrain.saveColor(this.getCouleur()) + "\n");
+        }
+    }
+    
+    public static String saveColor(Color c) {
+        return c.getRed()+";"+c.getGreen()+";"+c.getBlue();
+    }
+    public Color getCouleur() {
+        return couleur;
+    }
 }

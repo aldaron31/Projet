@@ -17,8 +17,11 @@ public abstract class Appui extends Noeuds{
     protected int id;
     protected Triangle_Terrain TT;
     protected int numero_point;
-    protected double position_segement;
+    protected double position_segment;
     
-    
-    
+    @Override
+    public void dessine(GraphicsContext context) {
+        context.setFill(Color.BLACK);
+        context.fillOval(this.position_segment-RAYON_IN_DRAW, this.position_segment-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+    }
 }

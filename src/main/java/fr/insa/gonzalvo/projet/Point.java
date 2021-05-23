@@ -23,6 +23,7 @@ public class Point {
     private double px;
     private double py;
     private Identificateur num;
+    private Color couleur = Color.GREEN;
 
     public Point() {
         this(0.0, 0.0,Color.BLACK);
@@ -33,7 +34,7 @@ public class Point {
      }
 
     public Point(double px, double py, Color c) {
-        
+        this.couleur = c;
         this.px = px;
         this.py = py;
     }
@@ -111,9 +112,23 @@ testDistance();
         return new Point(px, py);
     }
     
-    
     public void dessine(GraphicsContext context) {
         context.setFill(Color.GREEN);
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+    }
+    
+    public void save(Writer w, Numeroteur<Point> num) throws IOException {
+        if(! num.objExist(this)) {
+            int id = num.creeID(this);
+            w.append("Point;"+id+";"+this.px+";"+this.py+
+                    ";" + Point.saveColor(this.getCouleur()) + "\n");
+        }
+    }
+    
+    public static String saveColor(Color c) {
+        return c.getRed()+";"+c.getGreen()+";"+c.getBlue();
+    }
+    public Color getCouleur() {
+        return couleur;
     }
 }

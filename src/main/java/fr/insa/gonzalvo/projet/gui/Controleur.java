@@ -10,11 +10,18 @@ import fr.insa.gonzalvo.projet.Segment_Terrain;
 import fr.insa.gonzalvo.projet.Treillis;
 import fr.insa.gonzalvo.projet.Terrain;
 import fr.insa.gonzalvo.projet.Triangle_Terrain;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -28,8 +35,6 @@ public class Controleur {
     private Point pclic1;
     private Point pclic2;
     private Point pclic3;
-//    private List<Figure> selection;
-    private List<Point> selectionpoint;
     
     public Controleur(MainPane vue) {
         this.vue = vue;
@@ -37,22 +42,71 @@ public class Controleur {
     }
     
     public void changeEtat(int nouvelEtat) {
-        if (nouvelEtat == 20) {
-            //select
-            //this.selection.clear();
+        if (nouvelEtat == 10) {
+            // Début
+            this.vue.getRbBarres().setVisible(false);
+            this.vue.getRbNoeuds().setVisible(false);
+            this.vue.getRbPoints().setVisible(false);
+            this.vue.getRbSegments_Terrain().setVisible(false);
+            this.vue.getRbTrianglesT().setVisible(false);
             this.vue.redrawAll();
-        } else if (nouvelEtat == 30) {
-            // creation de points
-            //this.selection.clear();
-            //this.vue.getbGrouper().setDisable(true);
+        } else if (nouvelEtat == 20) {
+            // sélection
+        } else if (nouvelEtat == 100) {
+            // édition Terrain
+            this.vue.getRbPoints().setVisible(true);
+            this.vue.getRbSegments_Terrain().setVisible(true);
+            this.vue.getRbTrianglesT().setVisible(true);
+            this.vue.getRbBarres().setVisible(false);
+            this.vue.getRbNoeuds().setVisible(false);
             this.vue.redrawAll();
-        } else if (nouvelEtat == 40) {
+        } else if (nouvelEtat == 110) {
+            // création Point
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 120) {
             // creation de segments étape 1
-            //this.selection.clear();
-            //this.vue.getbGrouper().setDisable(true);
             this.vue.redrawAll();
-        } else if (nouvelEtat == 41) {
+        } else if (nouvelEtat == 121) {
             // creation de segments étape 2
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 130) {
+            // creation Triangle étape 1
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 131) {
+            // creation Triangle étape 2
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 132) {
+            // creation Triangle étape 3
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 200) {
+            // édition Treillis
+            this.vue.getRbBarres().setVisible(true);
+            this.vue.getRbNoeuds().setVisible(true);
+            this.vue.getRbPoints().setVisible(false);
+            this.vue.getRbSegments_Terrain().setVisible(false);
+            this.vue.getRbTrianglesT().setVisible(false);
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 210) {
+            // création Noeuds
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 211) {
+            // création Noeuds_Simple
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 212) {
+            // création Appui
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 213) {
+            // création Appui_Double
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 214) {
+            // création Appui_Encastré
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 215) {
+            // création Appui_Simple
+            this.vue.redrawAll();
+        } else if (nouvelEtat == 220) {
+            // création Barres
+            this.vue.redrawAll();
         }
         this.etat = nouvelEtat;
     }
@@ -60,110 +114,159 @@ public class Controleur {
     void clicDansZoneDessin(MouseEvent t) {
         if (this.etat == 20) {
             Point pclic = new Point(t.getX(), t.getY());
-            // pas de limite de distance entre le clic et l'objet selectionné
-            //Figure proche = this.vue.getModel().plusProche(pclic, Double.MAX_VALUE);
-            // il faut tout de même prévoir le cas ou le groupe est vide
-            // donc pas de plus proche
-            /*  if (proche != null) {
-                if (t.isShiftDown()) {
-                    this.selection.add(proche);
-                } else if (t.isControlDown()) {
-                    if (this.selection.contains(proche)) {
-                        this.selection.remove(proche);
-                    } else {
-                        this.selection.add(proche);
-                    }
-                } else {
-                    this.selection.clear();
-                    this.selection.add(proche);
-                }
-                this.activeBoutonsSuivantSelection();
-                this.vue.redrawAll();
-            } */
-        } else  if (this.etat == 30) {
+        } else  if (this.etat == 100) {
+            
+        } else  if (this.etat == 110) {
             double px = t.getX();
             double py = t.getY();
-            //Color col = this.vue.getcpCouleur().getValue();
             Treillis model = this.vue.getModel();
             model.getTerrainT().getEnsemblePoint().add(new Point(px, py));
             this.vue.redrawAll();
-        } else if (this.etat == 40) {
+        } else if (this.etat == 120) {
             this.pclic1 = new Point(t.getX(), t.getY());
-            this.vue.getRbPoints().setDisable(true);
-            this.changeEtat(41);
-        } else if (this.etat == 41) {
+            this.changeEtat(121);
+        } else if (this.etat == 121) {
             this.pclic2 = new Point(t.getX(), t.getY());
             Treillis model = this.vue.getModel();
             model.getTerrainT().getEnsembleST().add(new Segment_Terrain(pclic1, pclic2));
             this.vue.redrawAll();
-            this.changeEtat(40);
-        } else if (this.etat == 50){
+            this.changeEtat(120);
+        } else if (this.etat == 130){
             this.pclic1 = new Point(t.getX(), t.getY());
-            this.changeEtat(51);
-        } else if (this.etat == 51){
+            this.changeEtat(131);
+        } else if (this.etat == 131){
             this.pclic2 = new Point(t.getX(), t.getY());
-            this.changeEtat(52);
-        } else if (this.etat == 52) {
+            this.changeEtat(132);
+        } else if (this.etat == 132) {
             this.pclic3 = new Point(t.getX(), t.getY());
             Treillis model = this.vue.getModel();
             model.getTerrainT().getEnsembleTT().add(new Triangle_Terrain(pclic1, pclic2,pclic3));
             this.vue.redrawAll();
-            this.changeEtat(50);
+            this.changeEtat(130);
+        } else if (this.etat == 200) {
+            
+        } else if (this.etat == 210) {
+            
+        } else if (this.etat == 211) {
+            
+        } else if (this.etat == 212) {
+            
+        } else if (this.etat == 213) {
+            
+        } else if (this.etat == 214) {
+            
+        } else if (this.etat == 215) {
+            
+        } else if (this.etat == 220) {
+            
         }
     }
     
     public void boutonSelect(ActionEvent t) {
         this.changeEtat(20);
     }
+    
+    public void boutonTerrain(ActionEvent t) {
+        this.changeEtat(100);
+    }
 
     public void boutonPoints(ActionEvent t) {
-        this.changeEtat(30);
+        this.changeEtat(110);
     }
 
     public void boutonSegments(ActionEvent t) {
-        this.changeEtat(40);
+        this.changeEtat(120);
     }
     
     public void boutonTriangles(ActionEvent t) {
-        this.changeEtat(50);
+        this.changeEtat(130);
+    }
+    
+    public void boutonTreillis(ActionEvent t) {
+        this.changeEtat(200);
     }
     
     public void boutonNoeuds(ActionEvent t) {
-        this.changeEtat(60);
+        this.changeEtat(210);
     }
 
     public void boutonBarres(ActionEvent t) {
-        this.changeEtat(70);
+        this.changeEtat(220);
     }
     
-/*  private void activeBoutonsSuivantSelection() {
-        if (this.selection.size() < 2) {
-            this.vue.getbGrouper().setDisable(true);
-        } else {
-            this.vue.getbGrouper().setDisable(false);
-        }
-    }*/
+    private void realSave(File f) {
+        try {
+            this.vue.getModel().sauvegarde(f);
+            this.vue.setCurFile(f);
+            this.vue.getInStage().setTitle(f.getName());
+        } catch (IOException ex) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Problème durant la sauvegarde");
+            alert.setContentText(ex.getLocalizedMessage());
 
-/*    public List<Figure> getSelection() {
-        return selection;
-    }*/
-    
-/*    public void changeColor(Color value) {
-        if (this.etat == 20 && this.selection.size() > 0) {
-            for (Figure f : this.selection) {
-                f.changeCouleur(value);
+            alert.showAndWait();
+        } finally {
+            this.changeEtat(20);
+        }
+    }
+
+    public void menuSave(ActionEvent t) {
+        if (this.vue.getCurFile() == null) {
+            this.menuSaveAs(t);
+        } else {
+            this.realSave(this.vue.getCurFile());
+        }
+    }
+
+    public void menuSaveAs(ActionEvent t) {
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showSaveDialog(this.vue.getInStage());
+        if (f != null) {
+            this.realSave(f);
+        }
+    }
+
+    public void menuOpen(ActionEvent t) {
+        FileChooser chooser = new FileChooser();
+        File f = chooser.showOpenDialog(this.vue.getInStage());
+        if (f != null) {
+            try {
+                Treillis lue = Treillis.lecture(f);
+                Treillis glu = (Treillis) lue;
+                Stage nouveau = new Stage();
+                nouveau.setTitle(f.getName());
+                Scene sc = new Scene(new MainPane(nouveau, f, glu), 800, 600);
+                nouveau.setScene(sc);
+                nouveau.show();
+            } catch (Exception ex) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Problème durant la sauvegarde");
+                alert.setContentText(ex.getLocalizedMessage());
+
+                alert.showAndWait();
+            } finally {
+                this.changeEtat(20);
             }
-            this.vue.redrawAll();
         }
-    }*/
-    
-/*    public void boutonGrouper(ActionEvent t) {
-        if (this.etat == 20 && this.selection.size() > 1) {
-            // normalement le bouton est disabled dans le cas contraire
-            Groupe ssGroupe = this.vue.getModel().sousGroupe(selection);
-            this.selection.clear();
-            this.selection.add(ssGroupe);
-            this.vue.redrawAll();
-        }
-    }*/
+    }
+//    }
+
+    public void menuNouveau(ActionEvent t) {
+        Stage nouveau = new Stage();
+        nouveau.setTitle("Nouveau");
+        Scene sc = new Scene(new MainPane(nouveau), 1000, 650);
+        nouveau.setScene(sc);
+        nouveau.show();
+    }
+
+    public void menuApropos(ActionEvent t) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("A propos");
+        alert.setHeaderText(null);
+        alert.setContentText("Logiceil de création de Treillis par Timothé, Noé et Pablo");
+
+        alert.showAndWait();
+    }
 }

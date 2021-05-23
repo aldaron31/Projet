@@ -5,6 +5,8 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
@@ -39,6 +41,8 @@ public class Terrain {
        this.ymin = 0;
        this.ymax = 1000;
        this.EnsembleTT = new ArrayList<Triangle_Terrain>();
+       this.EnsembleST = new ArrayList<Segment_Terrain>();
+       this.EnsemblePoint = new ArrayList<Point>();
    }
    
    public Terrain(List<Triangle_Terrain> EnsembleTT, List<Point> EnsemblePoint, List<Segment_Terrain> EnsembleST) {
@@ -159,14 +163,21 @@ public class Terrain {
     }
 
     public void dessine(GraphicsContext context) {
-        for(Triangle_Terrain TT : this.getEnsembleTT()) {
-            TT.dessine(context);
+        
+        if(this.getEnsembleTT() != null) {
+            for(Triangle_Terrain TT : this.getEnsembleTT()) {
+                TT.dessine(context);
+            }
         }
-        for(Point p : this.getEnsemblePoint()) {
-            p.dessine(context);
+        if(this.getEnsemblePoint() != null) {
+            for(Point p : this.getEnsemblePoint()) {
+                p.dessine(context);
+            }
         }
-        for(Segment_Terrain ST : this.getEnsembleST()) {
-            ST.dessine(context);
+        if(this.getEnsembleST() != null) {
+            for(Segment_Terrain ST : this.getEnsembleST()) {
+                ST.dessine(context);
+            }
         }
             
     }
@@ -183,5 +194,19 @@ public class Terrain {
      */
     public void setEnsembleST(List<Segment_Terrain> EnsembleST) {
         this.EnsembleST = EnsembleST;
+    }
+    
+    public void save(Writer w, Numeroteur<Terrain> num, Numeroteur<Triangle_Terrain> numTT, Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
+        if (!num.objExist(this)) {
+            int id = num.creeID(this);
+            for (Triangle_Terrain tt : this.EnsembleTT) {
+                tt.save(w, numTT, numS, numP);
+            }
+            w.append("Terrain;" + id);
+            for (Triangle_Terrain tt : this.EnsembleTT) {
+                w.append(";" + numTT.getID(tt));
+            }
+            w.append("\n");
+        }
     }
 }

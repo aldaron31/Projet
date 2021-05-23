@@ -43,15 +43,7 @@ public class DessinTreillis extends Pane {
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
         Treillis model =  this.main.getModel();
         Terrain Tmodel = this.main.getModel().getTerrainT();
-        System.out.println("redraw");
         model.dessine(context);
         Tmodel.dessine(context);
-/*      List<Figure> select = this.main.getControleur().getSelection();
-        if (! select.isEmpty()) {
-            for (Figure f : select) {
-                f.dessineSelection(context);
-            }
-        } */
-        
     }
 }

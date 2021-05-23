@@ -17,9 +17,10 @@ public class Segment_Terrain {
     
     private Point debut;
     private Point fin;
+    private Color couleur = Color.GREEN;
     
     public Segment_Terrain(Point debut,Point fin,Color c){
-        
+        this.couleur = c;
         this.debut=debut;
         this.fin=fin;
     }
@@ -59,5 +60,22 @@ public class Segment_Terrain {
         context.strokeLine(this.debut.getPx(), this.debut.getPy(), this.fin.getPx(), this.fin.getPy());
         this.getDebut().dessine(context);
         this.getFin().dessine(context);
+    }
+    
+    public void save(Writer w, Numeroteur<Segment_Terrain> num, Numeroteur<Point> numP) throws IOException {
+        if(! num.objExist(this)) {
+            int id = num.creeID(this);
+            this.debut.save(w, numP);
+            this.fin.save(w, numP);
+            w.append("SegmentT;"+id+";"+numP.getID(this.debut)+";"+numP.getID(this.fin)+
+                    ";" + Segment_Terrain.saveColor(this.getCouleur()) + "\n");
+        }
+    }
+    
+    public static String saveColor(Color c) {
+        return c.getRed()+";"+c.getGreen()+";"+c.getBlue();
+    }
+    public Color getCouleur() {
+        return couleur;
     }
 }
