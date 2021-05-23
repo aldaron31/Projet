@@ -130,7 +130,7 @@ public class Treillis {
     Noeud_Simple n2= new Noeud_Simple(3,2);
     Noeud_Simple n3= new Noeud_Simple(4,2);   
     Noeud_Simple n4= new Noeud_Simple(5,3);
-    Barre b1= Barre(n1,n2);
+    Barre b1= new Barre(n1,n2);
    }
    
    public static Treillis TreillisTest() {
