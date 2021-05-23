@@ -33,7 +33,7 @@ public class Barre {
         this.NFin = NF;
     }
     */
-    public Noeuds getNdebut() {
+    public Noeuds getNDebut() {
         return this.NDebut;
     }
     

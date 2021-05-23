@@ -16,6 +16,7 @@ public abstract class Noeuds {
     
     private double px;
     private double py;
+    private List<Barre> barreconcou;
     
     // identificateur
 /*    protected int identificateur;
@@ -76,5 +77,15 @@ public abstract class Noeuds {
      */
     public void setPy(double py) {
         this.py = py;
+    }
+    public void barreconcou() {
+        int j=0;
+        //on parcourt l'ensemble  des barres du treillis
+        for (int i=0; i<Tre.getEnsembleBarres.size(); i++) {
+            //on teste si la barre est concourante
+            if (Tre.getEnsebleBarres.get(i).getNDebut()==|| Tre.getEnsebleBarres.get(i).getNFin()) {
+                barreconcou.add(Tre.getEnsebleBarres.get(i));
+            }
+        }
     }
 }
