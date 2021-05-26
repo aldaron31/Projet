@@ -28,26 +28,38 @@ public class Treillis {
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
     private Terrain TerrainT;
-    private List<Noeuds> contientNoeuds;
-    private List<Barre> contientBarre;
+    
+    
+    private Conteneur<Noeuds> ContientN;
+    private Conteneur<Barre> ContientB;
+    private Conteneur<Triangle_Terrain> ContientTT;
    //Après on a aussi catalogue barres et le terrain mais sont des eléments simples
     
     public Treillis(List<Barre> EnsembleBarres,List<Noeuds> EnsembleNoeuds, Terrain Terrain){
         this.TerrainT = Terrain;
         this.EnsembleBarres= EnsembleBarres;
         this.EnsembleNoeuds= EnsembleNoeuds;
+        this.ContientN = new Conteneur<Noeuds>();
+        this.ContientB = new Conteneur<Barre>();
+        this.ContientTT = new Conteneur<Triangle_Terrain>();
     }
     
     public Treillis(Terrain Terrain){
         this.TerrainT = Terrain;
         this.EnsembleBarres=new ArrayList<Barre>();
         this.EnsembleNoeuds=new ArrayList<Noeuds>();
+        this.ContientN = new Conteneur<Noeuds>();
+        this.ContientB = new Conteneur<Barre>();
+        this.ContientTT = new Conteneur<Triangle_Terrain>();
     }
     
     public Treillis(){
         this.TerrainT = new Terrain();
         this.EnsembleBarres=new ArrayList<Barre>();
         this.EnsembleNoeuds=new ArrayList<Noeuds>();
+        this.ContientN = new Conteneur<Noeuds>();
+        this.ContientB = new Conteneur<Barre>();
+        this.ContientTT = new Conteneur<Triangle_Terrain>();
     }
     //méthodes pour avoir les get et set seulement d'un des tableaux
 
@@ -279,5 +291,85 @@ public class Treillis {
     public static void main(String[] args) {
         //testSauvegarde();
         testLecture();
+    }
+
+    /**
+     * @return the ContientN
+     */
+    public Conteneur<Noeuds> getContientN() {
+        return ContientN;
+    }
+
+    /**
+     * @param ContientN the ContientN to set
+     */
+    public void setContientN(Conteneur<Noeuds> ContientN) {
+        this.ContientN = ContientN;
+    }
+
+    /**
+     * @return the ContientB
+     */
+    public Conteneur<Barre> getContientB() {
+        return ContientB;
+    }
+
+    /**
+     * @param ContientB the ContientB to set
+     */
+    public void setContientB(Conteneur<Barre> ContientB) {
+        this.ContientB = ContientB;
+    }
+
+    /**
+     * @return the ContientTT
+     */
+    public Conteneur<Triangle_Terrain> getContientTT() {
+        return ContientTT;
+    }
+
+    /**
+     * @param ContientTT the ContientTT to set
+     */
+    public void setContientTT(Conteneur<Triangle_Terrain> ContientTT) {
+        this.ContientTT = ContientTT;
+    }
+    
+    public Noeuds procheNoeuds(Point p){
+        double distance;
+        Noeuds res = getEnsembleNoeuds().get(0);
+        
+        double distanceprec = distancePointN(p, res);
+        for(Noeuds n : getEnsembleNoeuds()){
+            distance = distancePointN(p,n);
+            if(distance<distanceprec){
+                distanceprec = distance;
+                res = n;
+            }
+            
+        }
+        return res;
+    }
+    
+    public static double distancePointN(Point p, Noeuds n) {
+        double dx = p.getPx() - n.getPx();
+        double dy = p.getPy() - n.getPy();
+        return Math.sqrt(dx*dx+dy*dy);
+
+    }
+    
+    public double distancePoint(Point p, Noeuds N) {
+        if (this.getContientN().size() == 0) {
+            return new Point(0, 0).distancePoint(p);
+        } else {
+            double dist = this.distancePointN(p, this.getContientN().get(0));
+            for (int i = 1; i < this.getContientN().size(); i++) {
+                double cur = this.distancePointN(p, this.getContientN().get(i));
+                if (cur < dist) {
+                    dist = cur;
+                }
+            }
+            return dist;
+        }
     }
 }

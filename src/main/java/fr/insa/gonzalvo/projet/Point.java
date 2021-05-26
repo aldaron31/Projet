@@ -131,4 +131,11 @@ testDistance();
     public Color getCouleur() {
         return couleur;
     }
+    
+    public double distancePoint(Point p) {
+        double dx = this.px - p.px;
+        double dy = this.py - p.py;
+        return Math.sqrt(dx*dx+dy*dy);
+
+    }
 }

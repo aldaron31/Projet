@@ -5,6 +5,7 @@
  */
 package fr.insa.gonzalvo.projet.gui;
 
+import fr.insa.gonzalvo.projet.Noeuds;
 import fr.insa.gonzalvo.projet.Terrain;
 import fr.insa.gonzalvo.projet.Treillis;
 import java.util.List;
@@ -41,9 +42,17 @@ public class DessinTreillis extends Pane {
     }
     public void redrawAll() {
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
+        context.setFill(Color.WHITE);
+        context.fillRect(0, 0, this.realCanvas.getWidth(), this.realCanvas.getHeight());
         Treillis model =  this.main.getModel();
         Terrain Tmodel = this.main.getModel().getTerrainT();
         model.dessine(context);
         Tmodel.dessine(context);
+        List<Noeuds> select = this.main.getControleur().getVue().getModel().getContientN().getContient();
+        if (!select.isEmpty()) {
+            for (Noeuds n : select) {
+                n.dessineSelection(context);
+            }
+        }
     }
 }

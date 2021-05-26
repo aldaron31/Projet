@@ -21,5 +21,9 @@ public class Appui_Simple extends Appui {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    @Override
+    public void dessineSelection(GraphicsContext context) {
+        context.setFill(Color.BLACK);
+        
+    }
 }

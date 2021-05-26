@@ -5,6 +5,7 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -50,6 +51,8 @@ public abstract class Noeuds {
     }
 */  
     public abstract void dessine(GraphicsContext context);
+    
+    public abstract void dessineSelection(GraphicsContext context);
 
     /**
      * @return the px
@@ -77,5 +80,27 @@ public abstract class Noeuds {
      */
     public void setPy(double py) {
         this.py = py;
+    }
+    
+    public Noeuds plusProcheN(Point p, double distMax, Treillis Tr) {
+        if (Tr.getContientN().size() == 0) {
+            return null;
+        } else {
+            Noeuds nmin = Tr.getContientN().get(0);
+            double min = Tr.distancePointN(p, nmin);
+            for (int i = 1; i < Tr.getContientN().size(); i++) {
+                Noeuds ncur = Tr.getContientN().get(i);
+                double cur = Tr.distancePointN(p, ncur);
+                if (cur < min) {
+                    min = cur;
+                    nmin = ncur;
+                }
+            }
+            if (min <= distMax) {
+                return nmin;
+            } else {
+                return null;
+            }
+        }
     }
 }

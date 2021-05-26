@@ -151,7 +151,16 @@ public class Triangle_Terrain {
         this.s1.dessine(context);
         this.s2.dessine(context);
         this.s3.dessine(context);
-        
+        double[] posX = new double[3];
+        double[] posY = new double[3];
+        posX[0] = this.p1.getPx();
+        posX[1] = this.p2.getPx();
+        posX[2] = this.p3.getPx();
+        posY[0] = this.p1.getPy();
+        posY[1] = this.p2.getPy();
+        posY[2] = this.p3.getPy();
+        context.setFill(Color.GREEN);
+        context.fillPolygon(posX, posY, 3);
     }
     
     public boolean Test_Triangle_Point (Triangle_Terrain T, Point p) {

@@ -47,10 +47,6 @@ public class MainPane extends BorderPane {
     private RadioButton rbAppui_Encastre;
     private RadioButton rbBarres;
     
-    private Button bTerrain;
-    private Button bTreillis;
-    private Button bCalcul;
-    
     private DessinTreillis cDessin;
     private MainMenu menu;
     
@@ -89,39 +85,54 @@ public class MainPane extends BorderPane {
         this.rbNoeuds.setOnAction((t) -> {
             this.controleur.boutonNoeuds(t);
         });
+        this.rbNoeuds_Simple = new RadioButton("-> Simples");
+        this.rbNoeuds_Simple.setOnAction((t) -> {
+            this.controleur.boutonNoeuds_Simple(t);
+        });
+        this.rbAppui = new RadioButton("Appuis");
+        this.rbAppui.setOnAction((t) -> {
+            this.controleur.boutonAppui(t);
+        });
+        this.rbAppui_Simple = new RadioButton("-> Simples");
+        this.rbAppui_Simple.setOnAction((t) -> {
+            this.controleur.boutonAppui_Simple(t);
+        });
+        this.rbAppui_Double = new RadioButton("-> Doubles");
+        this.rbAppui_Double.setOnAction((t) -> {
+            this.controleur.boutonAppui_Double(t);
+        });
+        this.rbAppui_Encastre = new RadioButton("-> Encastrés");
+        this.rbAppui_Encastre.setOnAction((t) -> {
+            this.controleur.boutonAppui_Encastre(t);
+        });
         this.rbBarres = new RadioButton("Barres");
         this.rbBarres.setOnAction((t) -> {
             this.controleur.boutonBarres(t);
         });
         ToggleGroup bgEtat = new ToggleGroup();
         this.rbSelect.setToggleGroup(bgEtat);
-        this.rbNoeuds.setToggleGroup(bgEtat);
-        this.rbBarres.setToggleGroup(bgEtat);
         this.rbPoints.setToggleGroup(bgEtat);
         this.rbSegments_Terrain.setToggleGroup(bgEtat);
         this.rbTrianglesT.setToggleGroup(bgEtat);
-        this.rbPoints.setSelected(true); 
+        this.rbNoeuds.setToggleGroup(bgEtat);
+        this.rbNoeuds_Simple.setToggleGroup(bgEtat);
+        this.rbAppui.setToggleGroup(bgEtat);
+        this.rbAppui_Simple.setToggleGroup(bgEtat);
+        this.rbAppui_Double.setToggleGroup(bgEtat);
+        this.rbAppui_Encastre.setToggleGroup(bgEtat);
+        this.rbBarres.setToggleGroup(bgEtat);
+        this.rbSelect.setSelected(true); 
         
-        VBox vbGauche = new VBox(this.getRbSelect(), this.getRbNoeuds(), this.getRbBarres(), this.getRbPoints(), this.getRbSegments_Terrain(), this.getRbTrianglesT());
+        VBox vbGauche = new VBox(this.getRbSelect(), this.getRbPoints(), this.getRbSegments_Terrain(), 
+                this.getRbTrianglesT(), this.getRbNoeuds(), this.getRbNoeuds_Simple(), this.getRbAppui(), 
+                this.getRbAppui_Simple(), this.getRbAppui_Double(), this.getRbAppui_Encastre(), 
+                this.getRbBarres());
         this.setLeft(vbGauche);
-        
-        this.bTerrain = new Button("Terrain");
-        this.bTerrain.setOnAction((t) -> {
-            this.controleur.boutonTerrain(t);
-        });
-        
-        this.bTreillis = new Button("Treillis");
-        this.bTreillis.setOnAction((t) -> {
-            this.controleur.boutonTreillis(t);
-        });
-        
-        this.bCalcul = new Button("Calcul");
+   
+/*        this.bCalcul = new Button("Calcul");
         this.bCalcul.setOnAction((t) -> {
             System.out.println("bouton Calcul cliqué");
-        });
-        
-        VBox vbDroite = new VBox(this.getbCalcul(), this.getbTerrain(), this.getbTreillis());
-        this.setRight(vbDroite);
+        }); */
         
         this.cDessin = new DessinTreillis(this);
         this.setCenter(this.cDessin);
@@ -166,27 +177,6 @@ public class MainPane extends BorderPane {
     }
 
     /**
-     * @return the bGrouper
-     */
-    public Button getbTerrain() {
-        return bTerrain;
-    }
-
-    /**
-     * @return the bCalcul
-     */
-    public Button getbCalcul() {
-        return bCalcul;
-    }
-
-    /**
-     * @return the cpCouleur
-     */
-    public Button getbTreillis() {
-        return bTreillis;
-    }
-
-    /**
      * @return the cDessin
      */
     public DessinTreillis getcDessin() {
@@ -224,6 +214,41 @@ public class MainPane extends BorderPane {
 
     public void setCurFile(File curFile) {
         this.curFile = curFile;
+    }
+
+    /**
+     * @return the rbNoeuds_Simple
+     */
+    public RadioButton getRbNoeuds_Simple() {
+        return rbNoeuds_Simple;
+    }
+
+    /**
+     * @return the rbAppui
+     */
+    public RadioButton getRbAppui() {
+        return rbAppui;
+    }
+
+    /**
+     * @return the rbAppui_Simple
+     */
+    public RadioButton getRbAppui_Simple() {
+        return rbAppui_Simple;
+    }
+
+    /**
+     * @return the rbAppui_Double
+     */
+    public RadioButton getRbAppui_Double() {
+        return rbAppui_Double;
+    }
+
+    /**
+     * @return the rbAppui_Encastre
+     */
+    public RadioButton getRbAppui_Encastre() {
+        return rbAppui_Encastre;
     }
     
 }

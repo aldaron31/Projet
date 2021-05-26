@@ -24,5 +24,11 @@ public class Appui_Double extends Appui {
         
     }
     
+    @Override
+    public void dessineSelection(GraphicsContext context) {
+        context.setFill(Color.BLACK);
+        
+    }
+    
     
 }

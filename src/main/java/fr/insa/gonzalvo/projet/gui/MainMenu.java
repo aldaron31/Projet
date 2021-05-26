@@ -29,6 +29,16 @@ public class MainMenu extends MenuBar{
             this.main.getControleur().menuOpen(t);
         });        
         file.getItems().addAll(nouveau,save,saveAs,load);
+        Menu edit = new Menu("Edition");
+        MenuItem terrain = new MenuItem("Terrain");
+        terrain.setOnAction((t) -> {
+            this.main.getControleur().menuTerrain(t);
+        });
+        MenuItem treillis = new MenuItem("Treillis");
+        treillis.setOnAction((t) -> {
+            this.main.getControleur().menuTreillis(t);
+        });
+        edit.getItems().addAll(terrain,treillis);
         Menu help = new Menu("Aide");
         MenuItem apropos = new MenuItem("A propos");
         apropos.setOnAction((t) -> {
@@ -36,7 +46,7 @@ public class MainMenu extends MenuBar{
         });        
         help.getItems().addAll(apropos);
         
-        this.getMenus().addAll(file,help);
+        this.getMenus().addAll(file,help,edit);
     }
     
 }
