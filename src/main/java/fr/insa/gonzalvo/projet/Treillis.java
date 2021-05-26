@@ -70,6 +70,13 @@ public class Treillis {
       public Barre getbarreTableau(int i){
         return this.getEnsembleBarres().get(i);
     }
+      public void barresconcou(Noeuds N) {
+          for (int i=0; i<this.EnsembleBarres.size(); i++) {
+              if (this.EnsembleBarres.get(i).getNDebut()==N ||this.EnsembleBarres.get(i).getNFin()==N) {
+                  
+              }
+          }
+      }
 
       public static void testArray(){
           Barre Be;
