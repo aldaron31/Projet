@@ -5,6 +5,7 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import Matrice.Matrice;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Writer;
@@ -27,6 +28,7 @@ public class Treillis {
   
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
+    private List<Appui_Double> EnsembleAppuiDouble;
     private Terrain TerrainT;
     
     
@@ -82,12 +84,21 @@ public class Treillis {
       public Barre getbarreTableau(int i){
         return this.getEnsembleBarres().get(i);
     }
-      public void barresconcou(Noeuds N) {
+      public void barreconcou(Noeuds N) {
+          List<Barre> La=new ArrayList<Barre>();
+          N.setbarreconcou(La);
           for (int i=0; i<this.EnsembleBarres.size(); i++) {
-              if (this.EnsembleBarres.get(i).getNDebut()==N ||this.EnsembleBarres.get(i).getNFin()==N) {
-                  
+              if ((this.EnsembleBarres.get(i).getNDebut()==N) ||(this.EnsembleBarres.get(i).getNFin()==N)) {
+                  N.getbarreconcou().add(this.EnsembleBarres.get(i));
               }
           }
+      }
+      
+      public Matrice CreaMat() {
+          int i=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
+          int j=2*this.EnsembleNoeuds.size();
+          Matrice Mat=new Matrice(i,j);
+          return Mat;
       }
 
       public static void testArray(){
@@ -290,7 +301,16 @@ public class Treillis {
     
     public static void main(String[] args) {
         //testSauvegarde();
-        testLecture();
+        //testLecture();
+        Noeud_Simple Na=new Noeud_Simple(1, 2);
+        Noeud_Simple Nb=new Noeud_Simple(4, 2);
+        Barre B=new Barre(Na, Nb);
+        Treillis T=new Treillis();
+        T.EnsembleBarres.add(B);
+        T.barreconcou(Nb);
+        for (int i=0; i<Nb.getbarreconcou().size(); i++) {
+            System.out.println("Oui");
+        }
     }
 
     /**

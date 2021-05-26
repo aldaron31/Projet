@@ -103,4 +103,11 @@ public abstract class Noeuds {
             }
         }
     }
+
+    public List<Barre> getbarreconcou() {
+        return this.barreconcou;
+    }
+    public void setbarreconcou(List<Barre> L) {
+        this.barreconcou=L;
+    }
 }
