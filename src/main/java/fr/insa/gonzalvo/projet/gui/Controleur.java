@@ -46,8 +46,8 @@ public class Controleur {
         //this.selection = new ArrayList<>();
     }
     
-    
-    
+    /*
+    //définit les actions lors d'un changement d'état
     public void changeEtat(int nouvelEtat) {
         if (nouvelEtat == 10) {
             // Début
@@ -140,7 +140,7 @@ public class Controleur {
         }
         this.etat = nouvelEtat;
     }
-
+//définit les actions lors d'un clic dans la zone de dessin en fonction de l'état
     void clicDansZoneDessin(MouseEvent t) {
         if (this.etat == 20) {
             Point pclic = new Point(t.getX(), t.getY());
@@ -241,7 +241,7 @@ public class Controleur {
             this.changeEtat(220);
         }
     }
-    
+    //change l'état lors du clic sur un bouton
     public void boutonSelect(ActionEvent t) {
         this.changeEtat(20);
     }
@@ -291,7 +291,7 @@ public class Controleur {
         } else {
         }
     }
-    
+    //lancement de la sauvegarde
     private void realSave(File f) {
         try {
             this.getVue().getModel().sauvegarde(f);
@@ -308,7 +308,7 @@ public class Controleur {
             this.changeEtat(10);
         }
     }
-
+//bouton sauveharde
     public void menuSave(ActionEvent t) {
         if (this.getVue().getCurFile() == null) {
             this.menuSaveAs(t);
@@ -316,7 +316,7 @@ public class Controleur {
             this.realSave(this.getVue().getCurFile());
         }
     }
-
+//bouton sauvegarde sous
     public void menuSaveAs(ActionEvent t) {
         FileChooser chooser = new FileChooser();
         File f = chooser.showSaveDialog(this.getVue().getInStage());
@@ -324,7 +324,7 @@ public class Controleur {
             this.realSave(f);
         }
     }
-
+//bouton ouvir un fichier
     public void menuOpen(ActionEvent t) {
         FileChooser chooser = new FileChooser();
         File f = chooser.showOpenDialog(this.getVue().getInStage());
@@ -350,7 +350,7 @@ public class Controleur {
         }
     }
 //    }
-
+//bouton création d'un nouveau treillis
     public void menuNouveau(ActionEvent t) {
         Stage nouveau = new Stage();
         nouveau.setTitle("Nouveau");

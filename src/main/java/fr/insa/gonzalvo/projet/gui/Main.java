@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
  *
  * @author Elève
  */
-public class Main extends Application {
+/*public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
@@ -31,3 +31,4 @@ public class Main extends Application {
     }
 
 }
+*/

@@ -20,7 +20,7 @@ public class DessinTreillis extends Pane {
     private MainPane main;
     
     private Canvas realCanvas;
-    
+    /*
     public DessinTreillis(MainPane main) {
         this.main = main;
         this.realCanvas = new Canvas(this.getWidth(),this.getHeight());
@@ -40,6 +40,7 @@ public class DessinTreillis extends Pane {
         });
         this.redrawAll();
     }
+    //redessine lors d'un ajout d'un objet
     public void redrawAll() {
         GraphicsContext context = this.realCanvas.getGraphicsContext2D();
         context.setFill(Color.WHITE);
@@ -55,4 +56,5 @@ public class DessinTreillis extends Pane {
             }
         }
     }
+*/
 }

@@ -32,36 +32,27 @@ public class Treillis {
     private Terrain TerrainT;
     
     
-    private Conteneur<Noeuds> ContientN;
-    private Conteneur<Barre> ContientB;
-    private Conteneur<Triangle_Terrain> ContientTT;
    //Après on a aussi catalogue barres et le terrain mais sont des eléments simples
     
     public Treillis(List<Barre> EnsembleBarres,List<Noeuds> EnsembleNoeuds, Terrain Terrain){
         this.TerrainT = Terrain;
         this.EnsembleBarres= EnsembleBarres;
         this.EnsembleNoeuds= EnsembleNoeuds;
-        this.ContientN = new Conteneur<Noeuds>();
-        this.ContientB = new Conteneur<Barre>();
-        this.ContientTT = new Conteneur<Triangle_Terrain>();
+        
     }
     
     public Treillis(Terrain Terrain){
         this.TerrainT = Terrain;
         this.EnsembleBarres=new ArrayList<Barre>();
         this.EnsembleNoeuds=new ArrayList<Noeuds>();
-        this.ContientN = new Conteneur<Noeuds>();
-        this.ContientB = new Conteneur<Barre>();
-        this.ContientTT = new Conteneur<Triangle_Terrain>();
+        
     }
     
     public Treillis(){
         this.TerrainT = new Terrain();
         this.EnsembleBarres=new ArrayList<Barre>();
         this.EnsembleNoeuds=new ArrayList<Noeuds>();
-        this.ContientN = new Conteneur<Noeuds>();
-        this.ContientB = new Conteneur<Barre>();
-        this.ContientTT = new Conteneur<Triangle_Terrain>();
+        
     }
     //méthodes pour avoir les get et set seulement d'un des tableaux
 
@@ -84,6 +75,9 @@ public class Treillis {
       public Barre getbarreTableau(int i){
         return this.getEnsembleBarres().get(i);
     }
+      /*récupère toutes les barres concourantes du noeud
+      et les envoie dans la liste barrecoucon située dans la classe neoud
+      */
       public void barreconcou(Noeuds N) {
           List<Barre> La=new ArrayList<Barre>();
           N.setbarreconcou(La);
@@ -93,14 +87,14 @@ public class Treillis {
               }
           }
       }
-      
+      //crée la matrice de calcul
       public Matrice CreaMat() {
           int j=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
           int i=2*this.EnsembleNoeuds.size();
           Matrice Mat=new Matrice(i,j);
           return Mat;
       }
-      
+      //crée une liste avec les identificateurs des objets dont les forces sont inconnues
       public List<Integer> CreaListCol() {
           int i=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
           List<Integer> ListCol=new ArrayList<Integer>();
@@ -124,34 +118,7 @@ public class Treillis {
         
         
 }
-
-    
-    //hasta aquí todo bien
-    /*
-    public void AddBarre(Barre B){
-       if(B.getTreillis() != this){
-           if(B.getTreillis()!= null){
-               throw new Error("Barre est dans un autre treillis");
-           }
-           else{
-               this.EnsembleBarres.add(B);
-               B.setTreillis(this);
-           }
-       } 
-    }
-    /*
-    public void AddNoeuds(Noeuds N){
-        if(N.getTreillis() != this){
-            if(N.getTreillis()!=null){
-            throw new Error ("Noeud est dans un autre treillis");
-            }
-            else{
-             this.EnsembleNoeuds.add(N);
-             N.setTreillis(this);
-        }
-            }
-    }
-*/
+/*
    public String MontrerListNoeuds(){
        String res = "Groupe {\n";
        for (int i = 0; i<this.getEnsembleNoeuds().size();i++){
@@ -167,7 +134,8 @@ public class Treillis {
        }
        return res+"}";
    }
-   
+   */
+      
    public static void NoeudPoint(){
     Noeud_Simple n1= new Noeud_Simple(1,2);
     Noeud_Simple n2= new Noeud_Simple(3,2);
@@ -183,7 +151,8 @@ public class Treillis {
        return TreillisTest;
    }
 
-    public void dessine(GraphicsContext context) {
+   //représentation grapique du treillis en dessinant les barres et les noeuds
+   public void dessine(GraphicsContext context) {
         for(Noeuds n : this.getEnsembleNoeuds()) {
             n.dessine(context);
         }
@@ -199,13 +168,14 @@ public class Treillis {
         this.TerrainT = TerrainT;
     }
     
+    //concstruction de la couleur lors de la lecture
     public static Color parseColor(String sr, String sg, String sb) {
        double rouge = Double.parseDouble(sr);
        double vert = Double.parseDouble(sg);
        double bleu = Double.parseDouble(sb);
        return Color.color(rouge, vert, bleu);
     }
-    
+    //écrit dans le fichier de sauvegarde
     public void save(Writer w, Numeroteur<Treillis> num, Numeroteur<Terrain> numT, Numeroteur<Triangle_Terrain> numTT, Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
         if (!num.objExist(this)) {
             int id = num.creeID(this);
@@ -213,7 +183,7 @@ public class Treillis {
             w.append("Treillis;" + id +";" + numT.getID(this.getTerrainT())+ "\n");
         }
     }
-    
+    //création du fichier de sauvegarde
     public void sauvegarde(File fout) throws IOException {
         Numeroteur<Treillis> num = new Numeroteur<Treillis>();
         Numeroteur<Terrain> numT = new Numeroteur<Terrain>();
@@ -235,6 +205,7 @@ public class Treillis {
         }
     }
     
+    //lecture du fichier de sauvegarde
     public static Treillis lecture(File fin) throws IOException {
         Numeroteur<Treillis> num = new Numeroteur<Treillis>();
         Numeroteur<Terrain> numT = new Numeroteur<Terrain>();
@@ -325,49 +296,8 @@ public class Treillis {
             System.out.println("Oui");
         }
     }
-
-    /**
-     * @return the ContientN
-     */
-    public Conteneur<Noeuds> getContientN() {
-        return ContientN;
-    }
-
-    /**
-     * @param ContientN the ContientN to set
-     */
-    public void setContientN(Conteneur<Noeuds> ContientN) {
-        this.ContientN = ContientN;
-    }
-
-    /**
-     * @return the ContientB
-     */
-    public Conteneur<Barre> getContientB() {
-        return ContientB;
-    }
-
-    /**
-     * @param ContientB the ContientB to set
-     */
-    public void setContientB(Conteneur<Barre> ContientB) {
-        this.ContientB = ContientB;
-    }
-
-    /**
-     * @return the ContientTT
-     */
-    public Conteneur<Triangle_Terrain> getContientTT() {
-        return ContientTT;
-    }
-
-    /**
-     * @param ContientTT the ContientTT to set
-     */
-    public void setContientTT(Conteneur<Triangle_Terrain> ContientTT) {
-        this.ContientTT = ContientTT;
-    }
     
+    //trouve le noeud le plus proche
     public Noeuds procheNoeuds(Point p){
         double distance;
         Noeuds res = getEnsembleNoeuds().get(0);
@@ -390,7 +320,7 @@ public class Treillis {
         return Math.sqrt(dx*dx+dy*dy);
 
     }
-    
+    /*
     public double distancePoint(Point p, Noeuds N) {
         if (this.getContientN().size() == 0) {
             return new Point(0, 0).distancePoint(p);
@@ -405,4 +335,5 @@ public class Treillis {
             return dist;
         }
     }
+*/
 }

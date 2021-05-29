@@ -21,18 +21,11 @@ public class Barre {
     private Noeuds NDebut;
     private Noeuds NFin; 
     private Type_Barre type;
-    private double traction;
     
     public Barre(Noeuds ND,Noeuds NF){
         this.NDebut = ND;
         this.NFin = NF;
     }
-    /*
-       public Barre(Noeud_Simple ND,Noeud_Simple NF){
-        this.NDebut = ND;
-        this.NFin = NF;
-    }
-    */
     public Noeuds getNDebut() {
         return this.NDebut;
     }
@@ -44,7 +37,7 @@ public class Barre {
         return id;
     }
     
-
+    //représentation graphique de la barre
     public void dessine(GraphicsContext context) {
         context.setStroke(Color.BLACK);
         context.strokeLine(this.NDebut.getPx(), this.NDebut.getPy(), this.NFin.getPx(), this.NFin.getPy());

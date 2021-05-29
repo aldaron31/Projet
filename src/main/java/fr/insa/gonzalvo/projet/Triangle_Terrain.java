@@ -143,7 +143,7 @@ public class Triangle_Terrain {
     public void setId(int id) {
         this.id = id;
     }
-    
+    //représentation graphique d'un triangle terrain
     public void dessine(GraphicsContext context) {
         this.p1.dessine(context);
         this.p2.dessine(context);
@@ -162,7 +162,7 @@ public class Triangle_Terrain {
         context.setFill(Color.GREEN);
         context.fillPolygon(posX, posY, 3);
     }
-    
+    /*
     public boolean Test_Triangle_Point (Triangle_Terrain T, Point p) {
        //Variable qui contient le signe de l'angle
        int angle1;
@@ -238,7 +238,8 @@ public class Triangle_Terrain {
            return false;
        }
    }
-    
+    */
+    //sauvegarde le TT
     public void save(Writer w, Numeroteur<Triangle_Terrain> num, Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
         if(! num.objExist(this)) {
             int id = num.creeID(this);

@@ -19,12 +19,8 @@ public abstract class Noeuds {
     private double py;
     private List<Barre> barreconcou;
     
-    // identificateur
-/*    protected int identificateur;
-    private Treillis TreillisNoeuds;
-    //vecteur somme des forces
-    protected double fx;
-    protected double fy;
+    
+/*    
     
     
     public Noeuds(int i,Treillis T){
@@ -50,8 +46,8 @@ public abstract class Noeuds {
         this.TreillisNoeuds.setEnsembleNoeuds(ListNoeuds);
     }
 */  
+    //représentation graphique du noeud
     public abstract void dessine(GraphicsContext context);
-    
     public abstract void dessineSelection(GraphicsContext context);
 
     /**
@@ -82,27 +78,6 @@ public abstract class Noeuds {
         this.py = py;
     }
     
-    public Noeuds plusProcheN(Point p, double distMax, Treillis Tr) {
-        if (Tr.getContientN().size() == 0) {
-            return null;
-        } else {
-            Noeuds nmin = Tr.getContientN().get(0);
-            double min = Tr.distancePointN(p, nmin);
-            for (int i = 1; i < Tr.getContientN().size(); i++) {
-                Noeuds ncur = Tr.getContientN().get(i);
-                double cur = Tr.distancePointN(p, ncur);
-                if (cur < min) {
-                    min = cur;
-                    nmin = ncur;
-                }
-            }
-            if (min <= distMax) {
-                return nmin;
-            } else {
-                return null;
-            }
-        }
-    }
 
     public List<Barre> getbarreconcou() {
         return this.barreconcou;

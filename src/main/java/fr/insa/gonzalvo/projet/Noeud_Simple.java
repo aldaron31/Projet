@@ -15,8 +15,6 @@ import javafx.scene.paint.Color;
  * @author gonza
  */
 public class Noeud_Simple extends Noeuds {
-    //private Point point;
-    //private int nbr_barre[];
     private double Px;
     private double Py;
     private Color couleur = Color.GRAY;
@@ -32,12 +30,14 @@ public class Noeud_Simple extends Noeuds {
     }
     
     @Override
+    //représentation graphique du noeud simple
     public void dessine(GraphicsContext context) {
         context.setFill(this.getCouleur());
         context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
     
     @Override
+    //représentation graphique lors de la sélection
     public void dessineSelection(GraphicsContext context) {
         context.setFill(Color.RED);
         context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);

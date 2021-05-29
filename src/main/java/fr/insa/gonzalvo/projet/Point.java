@@ -22,7 +22,6 @@ public class Point {
     public static double RAYON_IN_DRAW = 5;
     private double px;
     private double py;
-    private Identificateur num;
     private Color couleur = Color.GREEN;
 
     public Point() {
@@ -103,7 +102,7 @@ testDistance();
     public String toString() {
         return "(" + px + "," + py + ')';
     }
-
+/*
     public static Point demandePoint() {
         System.out.println("abscisse : ");
         double px = Lire.d();
@@ -111,12 +110,13 @@ testDistance();
         double py = Lire.d();
         return new Point(px, py);
     }
-    
+    */
+    //représentation graphique du point
     public void dessine(GraphicsContext context) {
         context.setFill(Color.GREEN);
         context.fillOval(this.px-RAYON_IN_DRAW, this.py-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
-    
+    //sauvegarde du point
     public void save(Writer w, Numeroteur<Point> num) throws IOException {
         if(! num.objExist(this)) {
             int id = num.creeID(this);

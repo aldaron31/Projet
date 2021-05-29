@@ -24,6 +24,7 @@ public abstract class Appui extends Noeuds{
     }
     
     @Override
+    //représentation graphique de l'appui
     public void dessine(GraphicsContext context) {
         context.setFill(Color.BLACK);
         context.fillOval(this.position_segment-RAYON_IN_DRAW, this.position_segment-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);

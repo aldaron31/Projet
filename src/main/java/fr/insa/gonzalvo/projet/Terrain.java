@@ -162,6 +162,9 @@ public class Terrain {
         this.EnsemblePoint = EnsemblePoint;
     }
 
+    /*représentation graphique du terrain en dessinant tous
+    les triangles du terrain, les points et segments.
+    */
     public void dessine(GraphicsContext context) {
         
         if(this.getEnsembleTT() != null) {
@@ -195,7 +198,7 @@ public class Terrain {
     public void setEnsembleST(List<Segment_Terrain> EnsembleST) {
         this.EnsembleST = EnsembleST;
     }
-    
+    //sauvegarde du terrain
     public void save(Writer w, Numeroteur<Terrain> num, Numeroteur<Triangle_Terrain> numTT, Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
         if (!num.objExist(this)) {
             int id = num.creeID(this);

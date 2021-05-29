@@ -47,6 +47,7 @@ public class Segment_Terrain {
         return "[" + this.debut + "," + this.fin + ']';
     }
 
+    /*
     public static Segment_Terrain demandeSegment() {
         System.out.println("point début : ");
         Point deb = Point.demandePoint();
@@ -54,14 +55,15 @@ public class Segment_Terrain {
         Point fin = Point.demandePoint();
         return new Segment_Terrain(deb, fin);
     }
-    
+    */
+    //représentation graphique d'un segment de terrain
     public void dessine(GraphicsContext context) {
         context.setStroke(Color.GREEN);
         context.strokeLine(this.debut.getPx(), this.debut.getPy(), this.fin.getPx(), this.fin.getPy());
         this.getDebut().dessine(context);
         this.getFin().dessine(context);
     }
-    
+    //sauvegarde du segment
     public void save(Writer w, Numeroteur<Segment_Terrain> num, Numeroteur<Point> numP) throws IOException {
         if(! num.objExist(this)) {
             int id = num.creeID(this);

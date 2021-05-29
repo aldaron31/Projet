@@ -8,7 +8,8 @@ import javafx.scene.control.MenuItem;
 public class MainMenu extends MenuBar{
     
     private MainPane main;
-    
+    //crée le menu avec les différents boutons
+    /*
     public MainMenu(MainPane main) {
         this.main = main;
         Menu file = new Menu("Fichier");
@@ -48,5 +49,5 @@ public class MainMenu extends MenuBar{
         
         this.getMenus().addAll(file,help,edit);
     }
-    
+    */
 }
