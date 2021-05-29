@@ -19,6 +19,10 @@ public abstract class Appui extends Noeuds{
     protected int numero_point;
     protected double position_segment;
     
+    public int getid() {
+        return id;
+    }
+    
     @Override
     public void dessine(GraphicsContext context) {
         context.setFill(Color.BLACK);

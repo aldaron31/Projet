@@ -95,10 +95,23 @@ public class Treillis {
       }
       
       public Matrice CreaMat() {
-          int i=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
-          int j=2*this.EnsembleNoeuds.size();
+          int j=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
+          int i=2*this.EnsembleNoeuds.size();
           Matrice Mat=new Matrice(i,j);
           return Mat;
+      }
+      
+      public List<Integer> CreaListCol() {
+          int i=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
+          List<Integer> ListCol=new ArrayList<Integer>();
+          for (int k=0; k<this.EnsembleAppuiDouble.size(); k++) {
+              ListCol.add(this.EnsembleAppuiDouble.get(k).getid());
+          }
+          for (int k=0; k<this.EnsembleBarres.size(); k++) {
+              ListCol.add(this.EnsembleBarres.get(k).getid());
+          }
+          ListCol.add(0);
+          return ListCol;
       }
 
       public static void testArray(){

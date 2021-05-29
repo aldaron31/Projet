@@ -40,6 +40,9 @@ public class Barre {
     public Noeuds getNFin() {
         return this.NFin;
     }
+    public int getid() {
+        return id;
+    }
     
 
     public void dessine(GraphicsContext context) {
