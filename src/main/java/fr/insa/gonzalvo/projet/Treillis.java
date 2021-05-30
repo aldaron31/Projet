@@ -17,6 +17,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import static java.lang.Math.acos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -78,7 +79,7 @@ public class Treillis {
       /*récupère toutes les barres concourantes du noeud
       et les envoie dans la liste barrecoucon située dans la classe neoud
       */
-      public void barreconcou(Noeuds N) {
+       public void barreconcou(Noeuds N) {
           List<Barre> La=new ArrayList<Barre>();
           N.setbarreconcou(La);
           for (int i=0; i<this.EnsembleBarres.size(); i++) {
@@ -87,6 +88,63 @@ public class Treillis {
               }
           }
       }
+       //confusion xdebut,xfin et coordonnés barre
+      public double AngleBarreNoeud(Barre B,Noeuds N){
+          double CompareY;
+          double CompareX;
+          if(B.getNDebut()!=N){
+             CompareX=B.getNDebut().getPx();
+             CompareY=B.getNDebut().getPy();
+          }
+          else{
+             CompareX=B.getNFin().getPx();
+             CompareY=B.getNFin().getPy(); 
+          }
+          double theta=0;
+          Segment S= new Segment();
+          if(CompareY>N.getPy()){
+              if(CompareX>N.getPx()){
+                  S.setXS(CompareX-N.getPx());
+                  System.out.println("zone 1");
+                 System.out.println(S.LongueurSegment());
+                 System.out.println(B.LongueurBarre());
+                 theta= acos((S.LongueurSegment())/(B.LongueurBarre()));
+              }
+              else{
+                  System.out.println("zone 2");
+                   S.setXS(CompareX-N.getPx());
+           
+              theta= (Math.PI-(acos((S.LongueurSegment())/(B.LongueurBarre()))));
+              }
+          }
+              else{
+                     if(CompareX>N.getPx()){
+                         S.setXS(CompareX-N.getPx());
+                         System.out.println("zone 4");
+                         theta=(((2)*(Math.PI))-(acos((S.LongueurSegment())/(B.LongueurBarre()))));
+                     }
+                     else{
+                         System.out.println("zone 3");
+                         S.setXS(CompareX-N.getPx());
+                         theta=((Math.PI)+(acos((S.LongueurSegment())/(B.LongueurBarre()))));
+                     }
+                      }
+          
+          return theta;
+     }
+     /* public static void main(String[] args){
+          testAngles();
+      }
+      */
+      public static void testAngles(){
+          Noeuds N1=new Noeud_Simple(1,1);
+          Noeuds N2=new Noeud_Simple(2,2);
+          Barre B=new Barre(N1,N2);
+          Treillis T=new Treillis();
+          double theta=T.AngleBarreNoeud(B,N2);
+          System.out.println(theta);
+      }
+     
       //crée la matrice de calcul
       public Matrice CreaMat() {
           int j=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;

@@ -31,6 +31,7 @@ public class Barre {
         this.XB=(NF.getPx()-ND.getPx());
         this.YB=(NF.getPy()-ND.getPy());
     }
+    
     public Noeuds getNDebut() {
         return this.NDebut;
     }
@@ -42,9 +43,17 @@ public class Barre {
         return id;
     }
     
-    public double LongueurBarre(Barre B){
-        double res=sqrt((XB*XB)+(YB*YB));
+    public double LongueurBarre(){
+        double res=sqrt((this.XB*this.XB)+(this.YB*this.YB));
         return res;
+    }
+
+    public double getXB() {
+        return XB;
+    }
+
+    public double getYB() {
+        return YB;
     }
     
     //représentation graphique de la barre
