@@ -8,6 +8,7 @@ package fr.insa.gonzalvo.projet;
 import static fr.insa.gonzalvo.projet.Point.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
+import static java.lang.Math.sqrt;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -20,16 +21,25 @@ public class Barre {
     private int id;
     private Noeuds NDebut;
     private Noeuds NFin; 
+    private double XB;
+    private double YB;
     private Type_Barre type;
     private Color couleur = Color.BLUE;
     
-    public Barre(Noeuds ND,Noeuds NF){
+    public Barre(Noeuds ND,Noeuds NF, Treillis Tr){
         this.NDebut = ND;
         this.NFin = NF;
+        this.XB=(NF.getPx(Tr)-ND.getPx(Tr));
+        this.YB=(NF.getPy(Tr)-ND.getPy(Tr));
     }
     
     public Barre(Noeuds ND,Noeuds NF, Color col){
         this.couleur = Color.BLUE;
+        this.NDebut = ND;
+        this.NFin = NF;
+    }
+    
+    public Barre(Noeuds ND,Noeuds NF){
         this.NDebut = ND;
         this.NFin = NF;
     }
@@ -43,6 +53,19 @@ public class Barre {
     }
     public int getid() {
         return id;
+    }
+    
+    public double LongueurBarre(){
+        double res=sqrt((this.XB*this.XB)+(this.YB*this.YB));
+        return res;
+    }
+
+    public double getXB() {
+        return XB;
+    }
+
+    public double getYB() {
+        return YB;
     }
     
     //représentation graphique de la barre

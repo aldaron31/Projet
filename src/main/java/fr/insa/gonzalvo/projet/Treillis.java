@@ -17,6 +17,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import static java.lang.Math.acos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -78,7 +79,7 @@ public class Treillis {
       /*récupère toutes les barres concourantes du noeud
       et les envoie dans la liste barrecoucon située dans la classe neoud
       */
-      public void barreconcou(Noeuds N) {
+       public void barreconcou(Noeuds N) {
           List<Barre> La=new ArrayList<Barre>();
           N.setbarreconcou(La);
           for (int i=0; i<this.EnsembleBarres.size(); i++) {
@@ -87,6 +88,63 @@ public class Treillis {
               }
           }
       }
+       //confusion xdebut,xfin et coordonnés barre
+      public double AngleBarreNoeud(Barre B,Noeuds N){
+          double CompareY;
+          double CompareX;
+          if(B.getNDebut()!=N){
+             CompareX=B.getNDebut().getPx(this);
+             CompareY=B.getNDebut().getPy(this);
+          }
+          else{
+             CompareX=B.getNFin().getPx(this);
+             CompareY=B.getNFin().getPy(this); 
+          }
+          double theta=0;
+          Segment S= new Segment();
+          if(CompareY>N.getPy(this)){
+              if(CompareX>N.getPx(this)){
+                  S.setXS(CompareX-N.getPx(this));
+                  System.out.println("zone 1");
+                 System.out.println(S.LongueurSegment());
+                 System.out.println(B.LongueurBarre());
+                 theta= acos((S.LongueurSegment())/(B.LongueurBarre()));
+              }
+              else{
+                  System.out.println("zone 2");
+                   S.setXS(CompareX-N.getPx(this));
+           
+              theta= (Math.PI-(acos((S.LongueurSegment())/(B.LongueurBarre()))));
+              }
+          }
+              else{
+                     if(CompareX>N.getPx(this)){
+                         S.setXS(CompareX-N.getPx(this));
+                         System.out.println("zone 4");
+                         theta=(((2)*(Math.PI))-(acos((S.LongueurSegment())/(B.LongueurBarre()))));
+                     }
+                     else{
+                         System.out.println("zone 3");
+                         S.setXS(CompareX-N.getPx(this));
+                         theta=((Math.PI)+(acos((S.LongueurSegment())/(B.LongueurBarre()))));
+                     }
+                      }
+          
+          return theta;
+     }
+     /* public static void main(String[] args){
+          testAngles();
+      }
+      */
+      public static void testAngles(){
+          Noeuds N1=new Noeud_Simple(1,1);
+          Noeuds N2=new Noeud_Simple(2,2);
+          Treillis T=new Treillis();
+          Barre B=new Barre(N1,N2,T);
+          double theta=T.AngleBarreNoeud(B,N2);
+          System.out.println(theta);
+      }
+     
       //crée la matrice de calcul
       public Matrice CreaMat() {
           int j=this.EnsembleAppuiDouble.size()+this.EnsembleBarres.size()+1;
@@ -112,8 +170,8 @@ public class Treillis {
           Barre Be;
         Noeud_Simple p1= new Noeud_Simple(1,2);
         Noeud_Simple p2= new Noeud_Simple(3,2);
-        Barre B= new Barre(p1,p2);
         Treillis T= new Treillis();
+        Barre B= new Barre(p1,p2,T);
        Be=T.getbarreTableau(1);
         
         
@@ -135,12 +193,12 @@ public class Treillis {
        return res+"}";
    }
       
-   public static void NoeudPoint(){
+   public static void NoeudPoint(Treillis Tr){
     Noeud_Simple n1= new Noeud_Simple(1,2);
     Noeud_Simple n2= new Noeud_Simple(3,2);
     Noeud_Simple n3= new Noeud_Simple(4,2);   
     Noeud_Simple n4= new Noeud_Simple(5,3);
-    Barre b1= new Barre(n1,n2);
+    Barre b1= new Barre(n1,n2,Tr);
    }
    
    public static Treillis TreillisTest() {
@@ -402,8 +460,8 @@ public class Treillis {
         //testLecture();
         Noeud_Simple Na=new Noeud_Simple(1, 2);
         Noeud_Simple Nb=new Noeud_Simple(4, 2);
-        Barre B=new Barre(Na, Nb);
         Treillis T=new Treillis();
+        Barre B=new Barre(Na, Nb, T);
         T.EnsembleBarres.add(B);
         T.barreconcou(Nb);
         for (int i=0; i<Nb.getbarreconcou().size(); i++) {
