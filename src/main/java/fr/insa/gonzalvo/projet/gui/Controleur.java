@@ -66,8 +66,6 @@ public class Controleur {
             this.getVue().getRbAppui_Double().setVisible(false);
             this.getVue().getRbAppui_Encastre().setVisible(false);
             this.getVue().redrawAll();
-        } else if (nouvelEtat == 20) {
-            // sélection
         } else if (nouvelEtat == 100) {
             // édition Terrain
             this.getVue().getRbPoints().setVisible(true);
@@ -96,25 +94,21 @@ public class Controleur {
             this.getVue().redrawAll();
         } else if (nouvelEtat == 120) {
             // creation de segments étape 1
-            this.getVue().getRbSelect().setDisable(false);
             this.getVue().getRbPoints().setDisable(false);
             this.getVue().getRbTrianglesT().setDisable(false);
             this.getVue().redrawAll();
         } else if (nouvelEtat == 121) {
             // creation de segments étape 2
-            this.getVue().getRbSelect().setDisable(true);
             this.getVue().getRbPoints().setDisable(true);
             this.getVue().getRbTrianglesT().setDisable(true);
             this.getVue().redrawAll();
         } else if (nouvelEtat == 130) {
             // creation Triangle étape 1
-            this.getVue().getRbSelect().setDisable(false);
             this.getVue().getRbPoints().setDisable(false);
             this.getVue().getRbSegments_Terrain().setDisable(false);
             this.getVue().redrawAll();
         } else if (nouvelEtat == 131) {
             // creation Triangle étape 2
-            this.getVue().getRbSelect().setDisable(true);
             this.getVue().getRbPoints().setDisable(true);
             this.getVue().getRbSegments_Terrain().setDisable(true);
             this.getVue().redrawAll();
@@ -202,9 +196,7 @@ public class Controleur {
     void clicDansZoneDessin(MouseEvent t) {
         Treillis model = this.vue.getModel();
         Terrain mTer = model.getTerrainT();
-        if (this.etat == 20) {
-            Point pclic = new Point(t.getX(), t.getY());
-        } else  if (this.etat == 100) {
+        if (this.etat == 100) {
             
         } else  if (this.etat == 110) {
             double px = t.getX();
@@ -272,32 +264,25 @@ public class Controleur {
                     new Segment_Terrain(this.getContientP().get(2),this.getContientP().get(0))));
             if(!mTer.existePoint(this.getContientP().get(0))) {
                 mTer.getEnsemblePoint().add(this.getContientP().get(0));
-                System.out.println("Point existe pas");
             }
             if(!mTer.existePoint(this.getContientP().get(1))) {
                 mTer.getEnsemblePoint().add(this.getContientP().get(1));
-                System.out.println("Point existe pas");
             }
             if(!mTer.existePoint(this.getContientP().get(2))) {
                 mTer.getEnsemblePoint().add(this.getContientP().get(2));
-                System.out.println("Point existe pas");
             }
             if(!mTer.existeSeg(new Segment_Terrain(this.getContientP().get(0),this.getContientP().get(1)))) {
                 mTer.getEnsembleST().add(new Segment_Terrain(this.getContientP().get(0),
                         this.getContientP().get(1)));
-                System.out.println("Segment existe pas");
             }
             if(!mTer.existeSeg(new Segment_Terrain(this.getContientP().get(1),this.getContientP().get(2)))) {
                 mTer.getEnsembleST().add(new Segment_Terrain(this.getContientP().get(1),
                         this.getContientP().get(2)));
-                System.out.println("Segment existe pas");
             }
             if(!mTer.existeSeg(new Segment_Terrain(this.getContientP().get(2),this.getContientP().get(0)))) {
                 mTer.getEnsembleST().add(new Segment_Terrain(this.getContientP().get(2),
                         this.getContientP().get(0)));
-                System.out.println("Segment existe pas");
             }
-            System.out.println(mTer.getEnsembleST().size());
             this.getVue().redrawAll();
             this.changeEtat(130);
         } else if (this.etat == 200) {
@@ -348,8 +333,8 @@ public class Controleur {
                 numPoint[1] = mem;
             }
             Triangle_Terrain TT = this.vue.getModel().getTerrainT().trouveTT(proche);
-            Appui_Encastre Ad = new Appui_Encastre(TT,numPoint[0],numPoint[1],posSeg);
-            this.getVue().getModel().getEnsembleNoeuds().add(Ad);
+            Appui_Encastre Ae = new Appui_Encastre(TT,numPoint[0],numPoint[1],posSeg);
+            this.getVue().getModel().getEnsembleNoeuds().add(Ae);
             this.getVue().redrawAll();
         } else if (this.etat == 215) {
             Point pclic = new Point(t.getX(), t.getY());
@@ -368,8 +353,8 @@ public class Controleur {
                 numPoint[1] = mem;
             }
             Triangle_Terrain TT = this.vue.getModel().getTerrainT().trouveTT(proche);
-            Appui_Simple Ad = new Appui_Simple(TT,numPoint[0],numPoint[1],posSeg);
-            this.getVue().getModel().getEnsembleNoeuds().add(Ad);
+            Appui_Simple As = new Appui_Simple(TT,numPoint[0],numPoint[1],posSeg);
+            this.getVue().getModel().getEnsembleNoeuds().add(As);
             this.getVue().redrawAll();
         } else if (this.etat == 220) {
             this.contientN = new ArrayList<Noeuds>();
@@ -399,10 +384,6 @@ public class Controleur {
         }
     }
     //change l'état lors du clic sur un bouton
-    public void boutonSelect(ActionEvent t) {
-        this.changeEtat(20);
-    }
-
     public void boutonPoints(ActionEvent t) {
         this.changeEtat(110);
     }
@@ -441,6 +422,10 @@ public class Controleur {
     
     public void boutonBarres(ActionEvent t) {
         this.changeEtat(220);
+    }
+    
+    public void boutonCalcul(ActionEvent t) {
+        System.out.println("Calculs effectués");
     }
     //lancement de la sauvegarde
     private void realSave(File f) {
@@ -547,10 +532,9 @@ public class Controleur {
         this.changeEtat(10);
     }
 
-    void menuSupr(ActionEvent t) {
-        if(this.getContientO() != null) {
-            this.getContientO().clear();
-        }
+    void menuSuprTout(ActionEvent t) {
+        this.vue.setModel(new Treillis());
+        this.getVue().redrawAll();
     }
 
     /**

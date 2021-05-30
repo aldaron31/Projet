@@ -244,7 +244,9 @@ public class Terrain {
     public Triangle_Terrain trouveTT(Segment_Terrain st) {
         Triangle_Terrain TT = null;
         for(Triangle_Terrain TTl : this.getEnsembleTT()) {
-            if((TTl.getS1()==st)||(TTl.getS2()==st)||(TTl.getS3()==st)) {
+            if(((TTl.getS1().getDebut() == st.getDebut())&&(TTl.getS1().getFin() == st.getFin()))
+                    ||((TTl.getS2().getDebut() == st.getDebut())&&(TTl.getS2().getFin() == st.getFin()))
+                    ||((TTl.getS3().getDebut() == st.getDebut())&&(TTl.getS3().getFin() == st.getFin()))) {
                 TT = TTl;
             }
         }

@@ -35,7 +35,6 @@ public class MainPane extends BorderPane {
     private Stage inStage;
     private File curFile;
     
-    private RadioButton rbSelect;
     private RadioButton rbPoints;
     private RadioButton rbSegments_Terrain;
     private RadioButton rbTrianglesT;
@@ -46,6 +45,8 @@ public class MainPane extends BorderPane {
     private RadioButton rbAppui_Double;
     private RadioButton rbAppui_Encastre;
     private RadioButton rbBarres;
+    
+    private Button bCalcul;
     
     private DessinTreillis cDessin;
     private MainMenu menu;
@@ -66,11 +67,6 @@ public class MainPane extends BorderPane {
         this.curFile = fromFile;
         this.model = model;
         this.controleur = new Controleur(this);
-        
-        this.rbSelect = new RadioButton("Select");
-        this.rbSelect.setOnAction((t) -> {
-            this.controleur.boutonSelect(t);
-        });
         
         this.rbPoints = new RadioButton("Points");
         this.rbPoints.setOnAction((t) -> {
@@ -112,8 +108,11 @@ public class MainPane extends BorderPane {
         this.rbBarres.setOnAction((t) -> {
             this.controleur.boutonBarres(t);
         });
+        this.bCalcul = new Button("Calcul");
+        this.bCalcul.setOnAction((t) -> {
+            this.controleur.boutonCalcul(t);
+        });
         ToggleGroup bgEtat = new ToggleGroup();
-        this.rbSelect.setToggleGroup(bgEtat);
         this.rbPoints.setToggleGroup(bgEtat);
         this.rbSegments_Terrain.setToggleGroup(bgEtat);
         this.rbTrianglesT.setToggleGroup(bgEtat);
@@ -124,18 +123,12 @@ public class MainPane extends BorderPane {
         this.rbAppui_Double.setToggleGroup(bgEtat);
         this.rbAppui_Encastre.setToggleGroup(bgEtat);
         this.rbBarres.setToggleGroup(bgEtat);
-        this.rbSelect.setSelected(true); 
         
-        VBox vbGauche = new VBox(this.getRbSelect(), this.getRbPoints(), this.getRbSegments_Terrain(), 
+        VBox vbGauche = new VBox(this.getbCalcul(), this.getRbPoints(), this.getRbSegments_Terrain(), 
                 this.getRbTrianglesT(), this.getRbNoeuds(), this.getRbNoeuds_Simple(), this.getRbAppui(), 
                 this.getRbAppui_Simple(), this.getRbAppui_Double(), this.getRbAppui_Encastre(), 
                 this.getRbBarres());
-        this.setLeft(vbGauche);
-   
-        /*    this.bCalcul = new Button("Calcul");
-        this.bCalcul.setOnAction((t) -> {
-            System.out.println("bouton Calcul cliqué");
-        }); */
+        this.setLeft(vbGauche); 
         
         this.cDessin = new DessinTreillis(this);
         this.setCenter(this.cDessin);
@@ -156,13 +149,6 @@ public class MainPane extends BorderPane {
 
     public Controleur getControleur() {
         return controleur;
-    }
-
-    /**
-     * @return the rbSelect
-     */
-    public RadioButton getRbSelect() {
-        return rbSelect;
     }
 
     /**
@@ -252,6 +238,24 @@ public class MainPane extends BorderPane {
      */
     public RadioButton getRbAppui_Encastre() {
         return rbAppui_Encastre;
+    }
+    
+    public void setModel(Treillis model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the bCalcul
+     */
+    public Button getbCalcul() {
+        return bCalcul;
+    }
+
+    /**
+     * @param bCalcul the bCalcul to set
+     */
+    public void setbCalcul(Button bCalcul) {
+        this.bCalcul = bCalcul;
     }
     
 }

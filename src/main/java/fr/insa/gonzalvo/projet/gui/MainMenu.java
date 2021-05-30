@@ -43,11 +43,11 @@ public class MainMenu extends MenuBar{
         annul.setOnAction((t) -> {
             this.main.getControleur().menuAnnul(t);
         });
-        MenuItem supr = new MenuItem("Suprimer");
-        supr.setOnAction((t) -> {
-            this.main.getControleur().menuSupr(t);
+        MenuItem suprTout = new MenuItem("Tout Suprimer");
+        suprTout.setOnAction((t) -> {
+            this.main.getControleur().menuSuprTout(t);
         });
-        edit.getItems().addAll(terrain,treillis,annul,supr);
+        edit.getItems().addAll(terrain,treillis,annul,suprTout);
         Menu help = new Menu("Aide");
         MenuItem apropos = new MenuItem("A propos");
         apropos.setOnAction((t) -> {

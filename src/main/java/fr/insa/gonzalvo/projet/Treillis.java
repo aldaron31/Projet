@@ -400,16 +400,9 @@ public class Treillis {
     public static void main(String[] args) {
         //testSauvegarde();
         //testLecture();
-        Point p1 = new Point(5,0);
-        Segment_Terrain st1 = new Segment_Terrain(new Point(4,6), new Point(6,6));
-        Segment_Terrain st2 = new Segment_Terrain(new Point(0,0), new Point(6,0));
-        Treillis Tr = new Treillis();
-        Tr.getTerrainT().getEnsemblePoint().add(p1);
-        Tr.getTerrainT().getEnsembleST().add(st2);
-        Tr.getTerrainT().getEnsembleST().add(st1);
-        Segment_Terrain res = Tr.procheSegment(p1);
-        System.out.println("(" + res.getDebut().getPx() + "),(" + res.getDebut().getPy() + ") et (" + res.getFin().getPx() + "),(" + res.getFin().getPy() + ")");
-        
+        int i = -4;
+        System.out.println(i);
+        System.out.println(Math.abs(i));
     }
     
     //trouve le noeud le plus proche
@@ -480,34 +473,27 @@ public class Treillis {
     }
     
     public double posSurSeg(Segment_Terrain st, Point p){
-        System.out.println("Pos sur Segment");
         if(st.getDebut().getPx()<st.getFin().getPx()) {
             double gauche = st.getDebut().getPx();
             double droite = st.getFin().getPx();
             double posPs = p.getPx();
-            System.out.println(gauche + " " + droite + " " + posPs);
             droite = droite-gauche;
             posPs = posPs - gauche;
             gauche = gauche-gauche;
-            System.out.println(gauche + " " + droite + " " + posPs);
             posPs = posPs/droite;
             gauche = gauche/droite;
             droite = droite/droite;
-            System.out.println(gauche + " " + droite + " " + posPs);
             return posPs;
         } else {
            double droite = st.getDebut().getPx();
            double gauche = st.getFin().getPx();
            double posPs = p.getPx();
-           System.out.println(gauche + " " + droite + " " + posPs);
            droite = droite-gauche;
            posPs = posPs - gauche;
            gauche = gauche-gauche;
-           System.out.println(gauche + " " + droite + " " + posPs);
            posPs = posPs/droite;
            gauche = gauche/droite;
            droite = droite/droite; 
-           System.out.println(gauche + " " + droite + " " + posPs);
            return posPs;
         }
     }
