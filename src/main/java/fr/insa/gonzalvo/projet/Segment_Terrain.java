@@ -56,11 +56,13 @@ public class Segment_Terrain {
         return new Segment_Terrain(deb, fin);
     }*/
     
+    //calcul coeff directeur de la droite
     public double coeffDirecteur() {
         double a = (this.getDebut().getPy()-this.getFin().getPy())/(this.getDebut().getPx()-this.getFin().getPx());
         return a;
     }
     
+    //calcul ordonnée à l'origine de la droite
     public double ordonneeAlOrigine() {
         double b = (this.getDebut().getPx()*this.getFin().getPy()-this.getDebut().getPy()*this.getFin().getPx())/(this.getDebut().getPx()-this.getFin().getPx());
         return b;

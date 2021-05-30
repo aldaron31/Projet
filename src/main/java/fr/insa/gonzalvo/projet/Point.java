@@ -94,9 +94,9 @@ public class Point {
     }
 
     public static void main(String[] args) {
-//        testDistance();
-testConstructeur();
-testDistance();
+//      testDistance();
+        testConstructeur();
+        testDistance();
     }
     @Override
     public String toString() {

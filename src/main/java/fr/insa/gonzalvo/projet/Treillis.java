@@ -400,9 +400,15 @@ public class Treillis {
     public static void main(String[] args) {
         //testSauvegarde();
         //testLecture();
-        int i = -4;
-        System.out.println(i);
-        System.out.println(Math.abs(i));
+        Noeud_Simple Na=new Noeud_Simple(1, 2);
+        Noeud_Simple Nb=new Noeud_Simple(4, 2);
+        Barre B=new Barre(Na, Nb);
+        Treillis T=new Treillis();
+        T.EnsembleBarres.add(B);
+        T.barreconcou(Nb);
+        for (int i=0; i<Nb.getbarreconcou().size(); i++) {
+            System.out.println("Oui");
+        }
     }
     
     //trouve le noeud le plus proche
@@ -417,7 +423,6 @@ public class Treillis {
                 distanceprec = distance;
                 res = n;
             }
-            
         }
         return res;
     }
@@ -426,13 +431,11 @@ public class Treillis {
         double dx = p.getPx() - n.getPx(this);
         double dy = p.getPy() - n.getPy(this);
         return Math.sqrt(dx*dx+dy*dy);
-
     }
     
     public Point prochePoint(Point p){
         double distance;
         Point res = getTerrainT().getEnsemblePoint().get(0);
-        
         double distanceprec = distancePointP(p, res);
         for(Point pt : getTerrainT().getEnsemblePoint()){
             distance = distancePointP(p,pt);
