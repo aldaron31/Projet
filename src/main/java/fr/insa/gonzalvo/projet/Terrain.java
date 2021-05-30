@@ -58,14 +58,24 @@ public class Terrain {
    
    public static Terrain TerrainTest() {
        
-       Point p1 = new Point(5, 645);
+       Point p1 = new Point(5, 600);
        Point p2 = new Point(5, 445);
-       Point p3 = new Point(205, 645);
+       Point p3 = new Point(205, 600);
        Point p4 = new Point(405, 445);
-       Point p5 = new Point(405, 645);
-       Point p6 = new Point(875, 445);
-       Point p7 = new Point(875,645);
-       Point p8 = new Point(675,645);
+       Point p5 = new Point(405, 600);
+       Point p6 = new Point(850, 445);
+       Point p7 = new Point(850,600);
+       Point p8 = new Point(675,600);
+       Segment_Terrain ST1 = new Segment_Terrain(p1,p2);
+       Segment_Terrain ST2 = new Segment_Terrain(p2,p3);
+       Segment_Terrain ST3 = new Segment_Terrain(p3,p1);
+       Segment_Terrain ST4 = new Segment_Terrain(p3,p4);
+       Segment_Terrain ST5 = new Segment_Terrain(p4,p2);
+       Segment_Terrain ST6 = new Segment_Terrain(p4,p5);
+       Segment_Terrain ST7 = new Segment_Terrain(p5,p3);
+       Segment_Terrain ST8 = new Segment_Terrain(p6,p7);
+       Segment_Terrain ST9 = new Segment_Terrain(p7,p8);
+       Segment_Terrain ST10 = new Segment_Terrain(p8,p6);
        Triangle_Terrain TT1 = new Triangle_Terrain(p1,p2,p3);
        Triangle_Terrain TT2 = new Triangle_Terrain(p2,p3,p4);
        Triangle_Terrain TT3 = new Triangle_Terrain(p3,p4,p5);
@@ -77,6 +87,21 @@ public class Terrain {
        EnsembleTT.add(TT2);
        EnsembleTT.add(TT3);
        EnsembleTT.add(TT4);
+       EnsembleST.add(ST1);
+       EnsembleST.add(ST2);
+       EnsembleST.add(ST3);
+       EnsembleST.add(ST4);
+       EnsembleST.add(ST5);
+       EnsembleST.add(ST6);
+       EnsembleST.add(ST7);
+       EnsembleST.add(ST8);
+       EnsembleST.add(ST9);
+       EnsembleST.add(ST10);
+       EnsemblePoint.add(p1);
+       EnsemblePoint.add(p2);
+       EnsemblePoint.add(p3);
+       EnsemblePoint.add(p4);
+       EnsemblePoint.add(p5);
        EnsemblePoint.add(p6);
        EnsemblePoint.add(p7);
        EnsemblePoint.add(p8);
@@ -198,8 +223,38 @@ public class Terrain {
     public void setEnsembleST(List<Segment_Terrain> EnsembleST) {
         this.EnsembleST = EnsembleST;
     }
+    
+    public int[] numPointConcou(Segment_Terrain st) {
+        int[] numConcou = new int[2];
+        Point Debut = st.getDebut();
+        Point Fin = st.getFin();
+        int i =0;
+        for (Point p : this.getEnsemblePoint()) {
+            if(p == Debut) {
+                numConcou[0] = i;
+            }
+            if(p == Fin) {
+                numConcou[1] = i;
+            }
+            i++;
+        }
+        return numConcou;
+    }
+    
+    public Triangle_Terrain trouveTT(Segment_Terrain st) {
+        Triangle_Terrain TT = null;
+        for(Triangle_Terrain TTl : this.getEnsembleTT()) {
+            if((TTl.getS1()==st)||(TTl.getS2()==st)||(TTl.getS3()==st)) {
+                TT = TTl;
+            }
+        }
+        return TT;
+    }
+    
+    
     //sauvegarde du terrain
-    public void save(Writer w, Numeroteur<Terrain> num, Numeroteur<Triangle_Terrain> numTT, Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
+    public void save(Writer w, Numeroteur<Terrain> num, Numeroteur<Triangle_Terrain> numTT, 
+            Numeroteur<Segment_Terrain> numS, Numeroteur<Point> numP) throws IOException {
         if (!num.objExist(this)) {
             int id = num.creeID(this);
             for (Triangle_Terrain tt : this.EnsembleTT) {
@@ -210,6 +265,49 @@ public class Terrain {
                 w.append(";" + numTT.getID(tt));
             }
             w.append("\n");
+        }
+    }
+    public boolean existePoint(Point p) {
+        int c =0;
+        for(Point pe : this.getEnsemblePoint()) {
+            if(pe == p) {
+                c++;
+            }
+        }
+        if(c==0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean existeSeg(Segment_Terrain st) {
+        int c =0;
+        for(Segment_Terrain ste : this.getEnsembleST()) {
+            if((ste.getDebut()==st.getDebut())&&(ste.getFin()==st.getFin())) {
+                c++;
+            } else if((ste.getDebut()==st.getFin())&&(ste.getFin()==st.getDebut())) {
+                c++;
+            }
+        }
+        if(c==0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public boolean existeTri(Triangle_Terrain tt) {
+        int c =0;
+        for(Triangle_Terrain tte : this.getEnsembleTT()) {
+            if(tte == tt) {
+                c++;
+            }
+        }
+        if(c==0) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

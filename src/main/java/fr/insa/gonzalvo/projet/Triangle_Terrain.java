@@ -36,6 +36,18 @@ public class Triangle_Terrain {
        
    }
    
+   public Triangle_Terrain(Point p1, Point p2, Point p3, Segment_Terrain s1, 
+           Segment_Terrain s2, Segment_Terrain s3) {
+       
+       this.p1 = p1;
+       this.p2 = p2;
+       this.p3 = p3;
+       this.s1 = s1;
+       this.s2 = s2;
+       this.s3 = s3;
+       
+   }
+   
    public Triangle_Terrain(Point p1, Point p2, Point p3, Segment_Terrain s1, Segment_Terrain s2, Segment_Terrain s3, Color col) {
        this.couleur = col;
        this.p1 = p1;

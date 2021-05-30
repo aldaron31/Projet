@@ -54,9 +54,18 @@ public class Segment_Terrain {
         System.out.println("point fin : ");
         Point fin = Point.demandePoint();
         return new Segment_Terrain(deb, fin);
+    }*/
+    
+    public double coeffDirecteur() {
+        double a = (this.getDebut().getPy()-this.getFin().getPy())/(this.getDebut().getPx()-this.getFin().getPx());
+        return a;
     }
-    */
-    //représentation graphique d'un segment de terrain
+    
+    public double ordonneeAlOrigine() {
+        double b = (this.getDebut().getPx()*this.getFin().getPy()-this.getDebut().getPy()*this.getFin().getPx())/(this.getDebut().getPx()-this.getFin().getPx());
+        return b;
+    }
+    
     public void dessine(GraphicsContext context) {
         context.setStroke(Color.GREEN);
         context.strokeLine(this.debut.getPx(), this.debut.getPy(), this.fin.getPx(), this.fin.getPy());

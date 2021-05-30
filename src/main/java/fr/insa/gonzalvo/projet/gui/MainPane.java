@@ -49,18 +49,18 @@ public class MainPane extends BorderPane {
     
     private DessinTreillis cDessin;
     private MainMenu menu;
-/*  
+  
     public MainPane(Stage inStage) {
         this(inStage, new Treillis());
     }
-/*
+
     public MainPane(Stage inStage, Treillis model) {
         this(inStage, null, model);
     }
-    /*création de l'interface avec un Controleur, un DessinTerillis
-    un MainMenu, un Treillis, tous les boutons nécessaires
-    */
-/*
+    //création de l'interface avec un Controleur, un DessinTerillis
+    //un MainMenu, un Treillis, tous les boutons nécessaires
+    
+
     public MainPane(Stage inStage, File fromFile, Treillis model){
         this.inStage = inStage;
         this.curFile = fromFile;
@@ -132,11 +132,11 @@ public class MainPane extends BorderPane {
                 this.getRbBarres());
         this.setLeft(vbGauche);
    
-/*        this.bCalcul = new Button("Calcul");
+        /*    this.bCalcul = new Button("Calcul");
         this.bCalcul.setOnAction((t) -> {
             System.out.println("bouton Calcul cliqué");
         }); */
-        /*
+        
         this.cDessin = new DessinTreillis(this);
         this.setCenter(this.cDessin);
         

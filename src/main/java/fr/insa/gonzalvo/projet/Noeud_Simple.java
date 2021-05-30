@@ -24,6 +24,12 @@ public class Noeud_Simple extends Noeuds {
         this.Px = P.getPx();
         this.Py = P.getPy();
     }
+    public Noeud_Simple(double x,double y, Color col){
+        this.couleur = Color.BLACK;
+        this.Px=x;
+        this.Py=y;
+    }
+    
     public Noeud_Simple(double x,double y){
         this.Px=x;
         this.Py=y;
@@ -31,58 +37,59 @@ public class Noeud_Simple extends Noeuds {
     
     @Override
     //représentation graphique du noeud simple
-    public void dessine(GraphicsContext context) {
-        context.setFill(this.getCouleur());
-        context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+    public void dessine(GraphicsContext context, Treillis Tr) {
+        context.setFill(Color.GRAY);
+        context.fillOval(this.getPx(Tr)-RAYON_IN_DRAW, this.getPy(Tr)-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
     
     @Override
     //représentation graphique lors de la sélection
-    public void dessineSelection(GraphicsContext context) {
+    public void dessineSelection(GraphicsContext context, Treillis Tr) {
         context.setFill(Color.RED);
-        context.fillOval(this.getPx()-RAYON_IN_DRAW, this.getPy()-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
+        context.fillOval(this.getPx(Tr)-RAYON_IN_DRAW, this.getPy(Tr)-RAYON_IN_DRAW, 2*RAYON_IN_DRAW, 2*RAYON_IN_DRAW);
     }
-    /**
-     * @return the Px
-     */
-    public double getPx() {
+    
+    @Override
+    public double getPx(Treillis Tr) {
         return Px;
     }
 
-    /**
-     * @param Px the Px to set
-     */
+    @Override
     public void setPx(double Px) {
         this.Px = Px;
     }
 
-    /**
-     * @return the Py
-     */
-    public double getPy() {
+    @Override
+    public double getPy(Treillis Tr) {
         return Py;
     }
 
-    /**
-     * @param Py the Py to set
-     */
+    @Override
     public void setPy(double Py) {
         this.Py = Py;
     }
-
-    /**
-     * @return the couleur
-     */
+    
+    @Override
     public Color getCouleur() {
         return couleur;
     }
 
-    /**
-     * @param couleur the couleur to set
-     */
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
     
+    @Override
+    public void save(Writer w, Numeroteur<Noeuds> numN, Numeroteur<Triangle_Terrain> numTT) throws IOException {
+        if(! numN.objExist(this)) {
+            int id = numN.creeID(this);
+            Treillis Tr = new Treillis();
+            w.append("Noeud_Simple;"+id+";"+this.getPx(Tr)+";"+this.getPy(Tr)+
+                    ";" + Noeud_Simple.saveColor(this.getCouleur()) + "\n");
+        }
+    }
+    
+    public static String saveColor(Color c) {
+        return c.getRed()+";"+c.getGreen()+";"+c.getBlue();
+    }
     
 }

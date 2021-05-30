@@ -20,7 +20,7 @@ public class DessinTreillis extends Pane {
     private MainPane main;
     
     private Canvas realCanvas;
-    /*
+    
     public DessinTreillis(MainPane main) {
         this.main = main;
         this.realCanvas = new Canvas(this.getWidth(),this.getHeight());
@@ -47,14 +47,7 @@ public class DessinTreillis extends Pane {
         context.fillRect(0, 0, this.realCanvas.getWidth(), this.realCanvas.getHeight());
         Treillis model =  this.main.getModel();
         Terrain Tmodel = this.main.getModel().getTerrainT();
-        model.dessine(context);
         Tmodel.dessine(context);
-        List<Noeuds> select = this.main.getControleur().getVue().getModel().getContientN().getContient();
-        if (!select.isEmpty()) {
-            for (Noeuds n : select) {
-                n.dessineSelection(context);
-            }
-        }
+        model.dessine(context, model);
     }
-*/
 }

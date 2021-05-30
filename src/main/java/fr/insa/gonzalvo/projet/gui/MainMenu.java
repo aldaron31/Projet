@@ -9,7 +9,7 @@ public class MainMenu extends MenuBar{
     
     private MainPane main;
     //crée le menu avec les différents boutons
-    /*
+    
     public MainMenu(MainPane main) {
         this.main = main;
         Menu file = new Menu("Fichier");
@@ -39,7 +39,15 @@ public class MainMenu extends MenuBar{
         treillis.setOnAction((t) -> {
             this.main.getControleur().menuTreillis(t);
         });
-        edit.getItems().addAll(terrain,treillis);
+        MenuItem annul = new MenuItem("Annuler");
+        annul.setOnAction((t) -> {
+            this.main.getControleur().menuAnnul(t);
+        });
+        MenuItem supr = new MenuItem("Suprimer");
+        supr.setOnAction((t) -> {
+            this.main.getControleur().menuSupr(t);
+        });
+        edit.getItems().addAll(terrain,treillis,annul,supr);
         Menu help = new Menu("Aide");
         MenuItem apropos = new MenuItem("A propos");
         apropos.setOnAction((t) -> {
@@ -49,5 +57,4 @@ public class MainMenu extends MenuBar{
         
         this.getMenus().addAll(file,help,edit);
     }
-    */
 }

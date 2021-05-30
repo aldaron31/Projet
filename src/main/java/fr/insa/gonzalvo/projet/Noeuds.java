@@ -5,9 +5,12 @@
  */
 package fr.insa.gonzalvo.projet;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -15,8 +18,6 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public abstract class Noeuds {
     
-    private double px;
-    private double py;
     private List<Barre> barreconcou;
     
     
@@ -47,36 +48,14 @@ public abstract class Noeuds {
     }
 */  
     //représentation graphique du noeud
-    public abstract void dessine(GraphicsContext context);
-    public abstract void dessineSelection(GraphicsContext context);
+    public abstract void dessine(GraphicsContext context, Treillis Tr);
+    public abstract void dessineSelection(GraphicsContext context, Treillis Tr);
 
-    /**
-     * @return the px
-     */
-    public double getPx() {
-        return px;
-    }
-
-    /**
-     * @param px the px to set
-     */
-    public void setPx(double px) {
-        this.px = px;
-    }
-
-    /**
-     * @return the py
-     */
-    public double getPy() {
-        return py;
-    }
-
-    /**
-     * @param py the py to set
-     */
-    public void setPy(double py) {
-        this.py = py;
-    }
+   
+    public abstract double getPx(Treillis Tr);
+    public abstract void setPx(double px);
+    public abstract double getPy(Treillis Tr);
+    public abstract void setPy(double py);
     
 
     public List<Barre> getbarreconcou() {
@@ -85,4 +64,8 @@ public abstract class Noeuds {
     public void setbarreconcou(List<Barre> L) {
         this.barreconcou=L;
     }
+    
+    public abstract void save(Writer w, Numeroteur<Noeuds> numN, Numeroteur<Triangle_Terrain> numTT) throws IOException;
+    
+    public abstract Color getCouleur();
 }
