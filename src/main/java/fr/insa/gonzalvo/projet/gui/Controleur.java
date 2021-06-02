@@ -489,7 +489,7 @@ public class Controleur {
 //bouton création d'un nouveau treillis
     public void menuNouveau(ActionEvent t) {
         Stage nouveau = new Stage();
-        nouveau.setTitle("Nouveau");
+        nouveau.setTitle("Nouveau Treillis");
         Scene sc = new Scene(new MainPane(nouveau), 1000, 650);
         nouveau.setScene(sc);
         nouveau.show();

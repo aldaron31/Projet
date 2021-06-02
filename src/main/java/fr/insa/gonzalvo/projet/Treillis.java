@@ -29,11 +29,10 @@ public class Treillis {
   
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
-    private List<Appui_Double> EnsembleAppuiDouble;
     private Terrain TerrainT;
+    private Catalogue ListTypeBarre;
     
-    
-   //Après on a aussi catalogue barres et le terrain mais sont des eléments simples
+    private List<Appui_Double> EnsembleAppuiDouble;
     
     public Treillis(List<Barre> EnsembleBarres,List<Noeuds> EnsembleNoeuds, Terrain Terrain){
         this.TerrainT = Terrain;
