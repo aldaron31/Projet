@@ -199,19 +199,57 @@ public class Treillis {
    public static Treillis TreillisTest() {
        
        Treillis TreillisTest = new Treillis(Terrain.TerrainTest());
-       Noeud_Simple ns1 = new Noeud_Simple(200,200);
-       Noeud_Simple ns2 = new Noeud_Simple(300,300);
-       Appui_Simple as1 = new Appui_Simple(TreillisTest.getTerrainT().getEnsembleTT().get(1), 1, 3, 0.5);
-       Barre b1 = new Barre(ns1,ns2);
-       Barre b2 = new Barre(as1,ns1);
-       Barre b3 = new Barre(as1,ns2);
+       Appui_Simple as1 = new Appui_Simple(TreillisTest.getTerrainT().getEnsembleTT().get(0), 0, 1, 0.3);
+       Noeud_Simple ns1 = new Noeud_Simple(265,305);
+       Noeud_Simple ns2 = new Noeud_Simple(326,350);
+       Noeud_Simple ns3 = new Noeud_Simple(372,293);
+       Noeud_Simple ns4 = new Noeud_Simple(424,354);
+       Noeud_Simple ns5 = new Noeud_Simple(489,286);
+       Noeud_Simple ns6 = new Noeud_Simple(520,355);
+       Noeud_Simple ns7 = new Noeud_Simple(597,317);
+       Appui_Double ad1 = new Appui_Double(TreillisTest.getTerrainT().getEnsembleTT().get(1), 3, 4, 0.5);
+       Barre b1 = new Barre(as1,ns1);
+       Barre b2 = new Barre(ns1,ns2);
+       Barre b3 = new Barre(ns2,as1);
+       Barre b4 = new Barre(ns1,ns3);
+       Barre b5 = new Barre(ns3,ns2);
+       Barre b6 = new Barre(ns2,ns4);
+       Barre b7 = new Barre(ns4,ns3);
+       Barre b8 = new Barre(ns3,ns5);
+       Barre b9 = new Barre(ns5,ns4);
+       Barre b10 = new Barre(ns4,ns6);
+       Barre b11 = new Barre(ns6,ns5);
+       Barre b12 = new Barre(ns5,ns7);
+       Barre b13 = new Barre(ns7,ad1);
+       Barre b14 = new Barre(ad1,ns6);
+       Barre b15 = new Barre(ns6,ns7);
        
        TreillisTest.getEnsembleNoeuds().add(ns1);
        TreillisTest.getEnsembleNoeuds().add(ns2);
+       TreillisTest.getEnsembleNoeuds().add(ns3);
+       TreillisTest.getEnsembleNoeuds().add(ns4);
+       TreillisTest.getEnsembleNoeuds().add(ns5);
+       TreillisTest.getEnsembleNoeuds().add(ns6);
+       TreillisTest.getEnsembleNoeuds().add(ns7);
+       TreillisTest.getEnsembleNoeuds().add(ad1);
        TreillisTest.getEnsembleNoeuds().add(as1);
+       
        TreillisTest.getEnsembleBarres().add(b1);
        TreillisTest.getEnsembleBarres().add(b2);
        TreillisTest.getEnsembleBarres().add(b3);
+       TreillisTest.getEnsembleBarres().add(b4);
+       TreillisTest.getEnsembleBarres().add(b5);
+       TreillisTest.getEnsembleBarres().add(b6);
+       TreillisTest.getEnsembleBarres().add(b7);
+       TreillisTest.getEnsembleBarres().add(b8);
+       TreillisTest.getEnsembleBarres().add(b9);
+       TreillisTest.getEnsembleBarres().add(b10);
+       TreillisTest.getEnsembleBarres().add(b11);
+       TreillisTest.getEnsembleBarres().add(b12);
+       TreillisTest.getEnsembleBarres().add(b13);
+       TreillisTest.getEnsembleBarres().add(b14);
+       TreillisTest.getEnsembleBarres().add(b15);
+       
        return TreillisTest;
    }
 

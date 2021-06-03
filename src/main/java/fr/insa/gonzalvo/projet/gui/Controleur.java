@@ -470,7 +470,7 @@ public class Controleur {
                 Treillis glu = (Treillis) lue;
                 Stage nouveau = new Stage();
                 nouveau.setTitle(f.getName());
-                Scene sc = new Scene(new MainPane(nouveau, f, glu), 800, 600);
+                Scene sc = new Scene(new MainPane(nouveau, f, glu), 1000, 650);
                 nouveau.setScene(sc);
                 nouveau.show();
             } catch (Exception ex) {

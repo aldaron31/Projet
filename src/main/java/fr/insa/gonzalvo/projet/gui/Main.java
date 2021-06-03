@@ -6,11 +6,13 @@
 package fr.insa.gonzalvo.projet.gui;
 
 import fr.insa.gonzalvo.projet.Treillis;
+import java.io.File;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import javafx.stage.FileChooser;
 
 /**
  *
