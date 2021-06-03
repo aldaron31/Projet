@@ -5,7 +5,6 @@
  */
 package fr.insa.gonzalvo.projet;
 
-import static fr.insa.gonzalvo.projet.Point.RAYON_IN_DRAW;
 import java.io.IOException;
 import java.io.Writer;
 import javafx.scene.canvas.GraphicsContext;
@@ -99,7 +98,9 @@ public abstract class Appui extends Noeuds{
                 (1-this.getPosSeg())*(Tr.getTerrainT().getEnsemblePoint().get(this.getNumPoint1()).getPy()));
     }
     
+    @Override
     public abstract void save(Writer w, Numeroteur<Noeuds> numN, Numeroteur<Triangle_Terrain> numTT) throws IOException;
     
+    @Override
     public abstract Color getCouleur();
 }

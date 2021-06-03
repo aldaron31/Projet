@@ -26,7 +26,6 @@ import java.util.logging.Logger;
  */
 public class Treillis {
 
-  
     private List<Barre> EnsembleBarres;
     private List<Noeuds> EnsembleNoeuds;
     private Terrain TerrainT;
@@ -131,10 +130,7 @@ public class Treillis {
           
           return theta;
      }
-     /* public static void main(String[] args){
-          testAngles();
-      }
-      */
+      
       public static void testAngles(){
           Noeuds N1=new Noeud_Simple(1,1);
           Noeuds N2=new Noeud_Simple(2,2);
